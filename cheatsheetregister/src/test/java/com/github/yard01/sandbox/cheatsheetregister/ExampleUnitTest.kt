@@ -1,4 +1,4 @@
-package com.github.yard01.sandbox.cheatsheetsregister
+package com.github.yard01.sandbox.cheatsheetregister
 
 import org.junit.Test
 
