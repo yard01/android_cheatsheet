@@ -24,7 +24,7 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val arr  = appContext.resources.getStringArray(R.array.list)
 
-        val factory : CheatSheetProviderFactory = CheatSheetRegister.getProviderFactory(arr[0])
+        val factory : CheatSheetProviderFactory = CheatSheetRegister.getProviderFactory(appContext, arr[0])
         System.out.println("" + factory)
         assertEquals("com.github.yard01.androidcheatsheet", appContext.packageName)
     }
