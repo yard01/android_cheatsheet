@@ -2,7 +2,7 @@
 <resources>
     <array name="list">
         <item>
-            com.github.yard01.sandbox.ui_cheatsheet.ui.UICheatSheetProviderFactory
+            com.github.yard01.sandbox.ui_cheatsheet.UICheatSheetProviderFactory
         </item>
     </array>
 </resources>

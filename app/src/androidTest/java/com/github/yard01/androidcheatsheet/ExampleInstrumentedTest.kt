@@ -2,6 +2,8 @@ package com.github.yard01.androidcheatsheet
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.github.yard01.sandbox.cheatsheet.CheatSheetProviderFactory
+import com.github.yard01.sandbox.cheatsheetregister.CheatSheetRegister
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,7 +20,12 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
+
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val arr  = appContext.resources.getStringArray(R.array.list)
+
+        val factory : CheatSheetProviderFactory = CheatSheetRegister.getProviderFactory(arr[0])
+        System.out.println("" + factory)
         assertEquals("com.github.yard01.androidcheatsheet", appContext.packageName)
     }
 }
