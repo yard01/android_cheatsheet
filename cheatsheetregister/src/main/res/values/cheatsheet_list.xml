@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="list">
+    <array name="cheatsheet_list">
         <item>
             com.github.yard01.sandbox.ui_cheatsheet.UICheatSheetProviderFactory
         </item>
