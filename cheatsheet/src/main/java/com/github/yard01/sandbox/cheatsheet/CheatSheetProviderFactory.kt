@@ -7,6 +7,6 @@ interface CheatSheetProviderFactory {
     val providerClassName : String
     val descriptionString : String
     val context : Context
-
+    public fun createProvider(): CheatSheetProvider
 
 }

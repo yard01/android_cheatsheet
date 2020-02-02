@@ -20,11 +20,13 @@ class MainActivity : AppCompatActivity() {
     //var items: Array<String>
 
     var factories: Array<CheatSheetProviderFactory> = arrayOf()
-
     init {
         //items = arrayOfNulls<>()
         //    resources.getStringArray(R.array.cheatsheet_list)
 
+    }
+    companion object {
+        var currentFactory : CheatSheetProviderFactory? = null
     }
 
     private fun createContent() {
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clickItem(view: View) {
+        currentFactory = view.tag as CheatSheetProviderFactory
 
         if (cheatsheet_content_fragmentcontainer != null) {
             // The detail container view will be present only in the
@@ -44,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             //twoPane = true
         } else {
             val intent = Intent(this, CheatSheetContentActivity::class.java).apply {
-                putExtra(CheatSheetContentActivity.PROVIDER_ID_PARAMETER, view.tag.toString())
+                putExtra(CheatSheetContentActivity.PROVIDER_ID_PARAMETER, currentFactory?.providerClassName)
             }
             startActivity(intent)
         }
@@ -75,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             val factory = factories[position]
             holder.idView.text = (position + 1).toString()
             holder.contentView.text = factory.descriptionString
-            holder.itemView.tag = factory.providerClassName
+            holder.itemView.tag = factory
             holder.itemView.setOnClickListener({v -> clickItem(v)})
         }
     }
