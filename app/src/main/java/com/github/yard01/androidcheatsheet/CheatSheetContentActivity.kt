@@ -3,6 +3,7 @@ package com.github.yard01.androidcheatsheet
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
+import com.github.yard01.androidcheatsheet.ui.CheatSheetFragment
 import com.github.yard01.sandbox.cheatsheet.CheatSheetProvider
 
 class CheatSheetContentActivity : AppCompatActivity() {
@@ -17,9 +18,12 @@ class CheatSheetContentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cheatsheet_content)
         savedInstanceState?.getString(PROVIDER_ID_PARAMETER)
         provider = MainActivity.currentFactory?.createProvider()
+
+        var fragment = CheatSheetFragment()
+
         supportFragmentManager.beginTransaction().replace(
             R.id.cheatsheet_container,
-            provider!!.fragment
+            fragment//provider!!.fragment
         ).commit()
         //FragmentManager
 

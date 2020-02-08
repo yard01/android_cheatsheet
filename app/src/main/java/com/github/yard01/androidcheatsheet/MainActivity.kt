@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.github.yard01.androidcheatsheet.ui.CheatSheetFragment
 import com.github.yard01.sandbox.cheatsheet.CheatSheetProviderFactory
 import com.github.yard01.sandbox.cheatsheetregister.CheatSheetRegister
 import kotlinx.android.synthetic.main.cheatsheet_list.*
@@ -38,13 +39,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun clickItem(view: View) {
         currentFactory = view.tag as CheatSheetProviderFactory
-
-        if (cheatsheet_content_fragmentcontainer != null) {
+        if (cheatsheet_container != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
             // activity should be in two-pane mode.
             //twoPane = true
+            var fragment = CheatSheetFragment()
+            supportFragmentManager.beginTransaction().replace(
+                R.id.cheatsheet_container,
+                fragment//provider!!.fragment
+            ).commit()
+
+
         } else {
             val intent = Intent(this, CheatSheetContentActivity::class.java).apply {
                 putExtra(CheatSheetContentActivity.PROVIDER_ID_PARAMETER, currentFactory?.providerClassName)
