@@ -12,15 +12,16 @@ import kotlinx.android.synthetic.main.cheatsheet_content.*
 import kotlinx.android.synthetic.main.cheatsheet_content.view.*
 
 class CheatSheetFragment: Fragment() {
+
     inner class DiffUtilCallbak: DiffUtil.ItemCallback<CheatSheetExampleRow>() {
-        override fun areItemsTheSame(
+        override fun areItemsTheSame(//сравнивает идентификаторы строк
             oldItem: CheatSheetExampleRow,
             newItem: CheatSheetExampleRow
         ): Boolean {
             return true
         }
 
-        override fun areContentsTheSame(
+        override fun areContentsTheSame(//сравнивает содержимое строк
             oldItem: CheatSheetExampleRow,
             newItem: CheatSheetExampleRow
         ): Boolean {
