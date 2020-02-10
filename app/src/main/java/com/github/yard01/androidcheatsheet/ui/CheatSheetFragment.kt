@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import com.github.yard01.androidcheatsheet.R
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
+import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import kotlinx.android.synthetic.main.cheatsheet_content.*
+import androidx.paging.LivePagedListBuilder
 import kotlinx.android.synthetic.main.cheatsheet_content.view.*
 
 class CheatSheetFragment: Fragment() {
@@ -25,7 +27,6 @@ class CheatSheetFragment: Fragment() {
             oldItem: CheatSheetExampleRow,
             newItem: CheatSheetExampleRow
         ): Boolean {
-            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             return true
         }
 
@@ -38,7 +39,12 @@ class CheatSheetFragment: Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
-        result.examplerow_list.adapter = PagedRowAdapter(DiffUtilCallbak())
+
+        val adapter = PagedRowAdapter(DiffUtilCallbak())
+
+        CheatSheetViewModel.rows!!.subscribe(adapter::submitList)
+
+        result.examplerow_list.adapter = adapter
         return result
     }
 }

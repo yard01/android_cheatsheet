@@ -12,6 +12,7 @@ class RowAdapter: RecyclerView.Adapter<RowAdapter.RowViewHolder>() {
 
     inner class RowViewHolder(var rowView: View): RecyclerView.ViewHolder(rowView) {
         val title: TextView = rowView.rowTitle_TextView
+
         //val contentView: TextView = rowView.content
     }
 /*

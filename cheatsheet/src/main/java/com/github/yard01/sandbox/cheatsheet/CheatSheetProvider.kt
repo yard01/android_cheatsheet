@@ -6,4 +6,5 @@ import androidx.fragment.app.Fragment
 interface CheatSheetProvider  {
     val context: Context
     val fragment: Fragment
+    fun provide()
 }
