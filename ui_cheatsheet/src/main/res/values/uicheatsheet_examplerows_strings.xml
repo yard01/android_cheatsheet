@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="ui_examples">
+        <item>Navigation</item>
+        <item>Lists</item>
+        <item>Widgets</item>
+        <item>Animation</item>
+    </array>
+    <string name="Nav">Navigation</string>
+</resources>
