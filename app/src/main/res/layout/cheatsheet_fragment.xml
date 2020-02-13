@@ -35,6 +35,8 @@
 
     <include layout="@layout/cheatsheet_content" />
 
+ <!--   <include layout="@layout/content_cheat_sheet_content" /> -->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

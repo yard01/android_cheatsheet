@@ -69,6 +69,7 @@ class CheatSheetFragment: Fragment() {
         //CheatSheetViewModel.rows?.subscribe(adapter::submitList)
 
         result.examplerow_list.adapter = adapter
+
         return result
     }
 }

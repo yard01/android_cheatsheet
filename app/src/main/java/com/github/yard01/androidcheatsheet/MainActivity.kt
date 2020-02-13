@@ -16,7 +16,6 @@ import com.github.yard01.sandbox.cheatsheetregister.CheatSheetRegister
 import kotlinx.android.synthetic.main.cheatsheet_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 
-
 class MainActivity : AppCompatActivity() {
     //var items: Array<String>
 

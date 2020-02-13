@@ -1,2 +1,2 @@
-include ':app', ':ui_cheatsheet', ':cheatsheet', ':cheatsheetregister', ':detail_example', ':navigator_example', ':navigator_example_bridge'
+include ':app', ':ui_cheatsheet', ':cheatsheet', ':cheatsheetregister', ':detail_example', ':navigator_example', ':navigator_example_bridge', ':scrollexample'
 rootProject.name='Android Cheat Sheet'

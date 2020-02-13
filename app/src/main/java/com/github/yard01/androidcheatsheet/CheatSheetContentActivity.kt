@@ -17,14 +17,15 @@ class CheatSheetContentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cheatsheet_content)
         savedInstanceState?.getString(PROVIDER_ID_PARAMETER)
+
         provider = MainActivity.currentFactory?.createProvider()
-
         var fragment = CheatSheetFragment()
-
         supportFragmentManager.beginTransaction().replace(
             R.id.cheatsheet_container,
-            fragment//provider!!.fragment
+            fragment
+
         ).commit()
+
         //FragmentManager
 
         /*
