@@ -3,7 +3,7 @@ package com.github.yard01.sandbox.cheatsheet.viewmodel
 import androidx.paging.PositionalDataSource
 
 
-class ContentDataSource(val storage: ContentStrorage): PositionalDataSource<CheatSheetExampleRow>() {
+class ContentDataSource(val storage: ContentStorage): PositionalDataSource<CheatSheetExampleRow>() {
 
     override fun loadInitial(
         params: LoadInitialParams,

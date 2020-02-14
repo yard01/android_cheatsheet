@@ -3,10 +3,11 @@
     <string name="ui_content">
         {rows:[
             {id:0,
-                bridges:[{com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge}]
+                bridges:[com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge]
             },
+
             {id:1,
-                bridges:[{com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge}]
+                bridges:[com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge]
             }
             ]
         }

@@ -15,6 +15,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.github.yard01.androidcheatsheet.MainActivity
 import com.github.yard01.sandbox.cheatsheet.MainThreadExecutor
+import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.cheatsheet_content.view.*
 import java.util.concurrent.Executors
@@ -29,22 +30,40 @@ class CheatSheetFragment: Fragment() {
             .build();
     }
 
-    inner class DiffUtilCallbak: DiffUtil.ItemCallback<CheatSheetExampleRow>() {
+    class RowDiffUtilCallbak: DiffUtil.ItemCallback<CheatSheetExampleRow>() {
         override fun areItemsTheSame(//сравнивает идентификаторы строк
             oldItem: CheatSheetExampleRow,
             newItem: CheatSheetExampleRow
         ): Boolean {
-            return true
+            return oldItem.title.equals(newItem.title)
         }
 
         override fun areContentsTheSame(//сравнивает содержимое строк
             oldItem: CheatSheetExampleRow,
             newItem: CheatSheetExampleRow
         ): Boolean {
-            return true
+            return oldItem.title.equals(newItem.title)
         }
 
     }
+
+    class CellDiffUtilCallbak: DiffUtil.ItemCallback<CheatSheetExampleCell>() {
+        override fun areItemsTheSame(//сравнивает идентификаторы строк
+            oldItem: CheatSheetExampleCell,
+            newItem: CheatSheetExampleCell
+        ): Boolean {
+            return oldItem.info.equals(newItem.info)
+        }
+
+        override fun areContentsTheSame(//сравнивает содержимое строк
+            oldItem: CheatSheetExampleCell,
+            newItem: CheatSheetExampleCell
+        ): Boolean {
+            return oldItem.info.equals(newItem.info)
+        }
+
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +73,7 @@ class CheatSheetFragment: Fragment() {
         // Inflate the layout for this fragment
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
 
-        val adapter = PagedRowAdapter(DiffUtilCallbak())
+        val adapter = PagedRowAdapter(RowDiffUtilCallbak())
 
         var provider = MainActivity.currentFactory?.createProvider()
         provider?.provide()

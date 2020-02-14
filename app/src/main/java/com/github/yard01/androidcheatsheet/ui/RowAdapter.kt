@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import kotlinx.android.synthetic.main.example_row.view.*
 
@@ -12,6 +13,7 @@ class RowAdapter: RecyclerView.Adapter<RowAdapter.RowViewHolder>() {
 
     inner class RowViewHolder(var rowView: View): RecyclerView.ViewHolder(rowView) {
         val title: TextView = rowView.rowTitle_TextView
+        val pager: ViewPager2 = rowView.cells_viewPager
 
         //val contentView: TextView = rowView.content
     }
@@ -57,6 +59,7 @@ class RowAdapter: RecyclerView.Adapter<RowAdapter.RowViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RowViewHolder, position: Int) {
-        holder.title.text = holder.rowView.context.getString(CheatSheetViewModel.exampleRows[position].titleId)
+
+        //holder.title.text = CheatSheetViewModel.exampleRows[position].title
     }
 }

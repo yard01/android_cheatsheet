@@ -13,7 +13,7 @@ class CheatSheetViewModel {
         var rows: Observable<PagedList<CheatSheetExampleRow>>? = null
         var contentDataSource: ContentDataSource? = null
 
-        fun setContentStorage(storage: ContentStrorage) {
+        fun setContentStorage(storage: ContentStorage) {
             contentDataSource = ContentDataSource(storage)
         }
 //        var exampleStorage

@@ -3,10 +3,12 @@ package com.github.yard01.sandbox.navigator_example_bridge
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
+import com.github.yard01.sandbox.cheatsheet.viewmodel.IconProvider
 import com.github.yard01.sandbox.navigator_example.MainActivity
 
-class NavigatorExampleBridge() : ExampleBridge {
+class NavigatorExampleBridge() : ExampleBridge, IconProvider {
     /*
     override var link: String
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
@@ -30,4 +32,10 @@ class NavigatorExampleBridge() : ExampleBridge {
         }
         context.startActivity(intent)
     }
+
+    override fun getIcon(context: Context): Bitmap {
+        return BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground)
+    }
+
+
 }

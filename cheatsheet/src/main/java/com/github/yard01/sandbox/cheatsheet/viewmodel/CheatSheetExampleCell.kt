@@ -5,8 +5,7 @@ import android.graphics.BitmapFactory
 import android.media.Image
 
 class CheatSheetExampleCell {
-    var infoId = -1
-    var imageId = -1
+    var info = ""
     var bitmap: Bitmap? = null
 
 }

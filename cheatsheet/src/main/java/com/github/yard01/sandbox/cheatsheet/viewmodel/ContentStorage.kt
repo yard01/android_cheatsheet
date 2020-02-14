@@ -1,5 +1,5 @@
 package com.github.yard01.sandbox.cheatsheet.viewmodel
 
-interface ContentStrorage {
+interface ContentStorage {
     fun getData(position: Int, size: Int): List<CheatSheetExampleRow>
 }
