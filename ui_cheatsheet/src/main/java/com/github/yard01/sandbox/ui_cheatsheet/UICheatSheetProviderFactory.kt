@@ -10,7 +10,8 @@ class UICheatSheetProviderFactory (override val context : Context): CheatSheetPr
     override val descriptionString: String = context.getString(R.string.ui_cheatsheet_app_name)
 
     override fun createProvider(): CheatSheetProvider {
-        return UICheatSheetProvider(context) //UICheatSheetProviderFactory::class.java.javaClass.classLoader?.loadClass(providerClassName)?.getConstructor(Context::class.java)?.newInstance(context) as CheatSheetProvider
+        return Class.forName(providerClassName).getConstructor(Context::class.java).newInstance(context) as CheatSheetProvider
+        //UICheatSheetProvider(context) //UICheatSheetProviderFactory::class.java.javaClass.classLoader?.loadClass(providerClassName)?.getConstructor(Context::class.java)?.newInstance(context) as CheatSheetProvider
     }
 
     init {

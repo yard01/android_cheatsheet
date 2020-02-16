@@ -1,5 +1,4 @@
 package com.github.yard01.sandbox.navigator_example_bridge
-
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -34,7 +33,7 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
     }
 
     override fun getIcon(): Bitmap {
-        return BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground)
+        return BitmapFactory.decodeResource(context.resources, R.drawable.test)// R.drawable.ic_launcher_foreground)
     }
 
 

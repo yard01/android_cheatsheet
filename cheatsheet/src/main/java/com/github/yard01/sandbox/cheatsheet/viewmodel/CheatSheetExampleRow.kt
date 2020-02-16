@@ -44,7 +44,7 @@ class CheatSheetExampleRow {
 
         for (i in position..position + len) {
             val cell = CheatSheetExampleCell(bridges[i])
-            cell.iconProvider.call()
+            cell.bridge.getIcon() // .iconProvider.call()
             result.add(cell)
         }
 

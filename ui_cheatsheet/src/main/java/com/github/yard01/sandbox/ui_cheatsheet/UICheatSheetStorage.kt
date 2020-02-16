@@ -4,6 +4,7 @@ import android.content.Context
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
 import com.github.yard01.sandbox.cheatsheet.viewmodel.ContentStorage
+
 import org.json.JSONObject
 
 class UICheatSheetStorage(var context: Context): ContentStorage {
@@ -21,11 +22,10 @@ class UICheatSheetStorage(var context: Context): ContentStorage {
         //context.resources
     }
 
-
     override fun getData(position: Int, size: Int): List<CheatSheetExampleRow> {
         var len = size
         var result: ArrayList<CheatSheetExampleRow> = ArrayList()
-        //if position
+
         if (position + size >= headers.size) len =  headers.size - position - 1
 
         var list: List<String>
@@ -44,7 +44,7 @@ class UICheatSheetStorage(var context: Context): ContentStorage {
                     val jsonBridges = row.getJSONArray(JSON_BRIDGES)
                     for ( bridge in 0..jsonBridges.length() - 1) {
                         val bridgeName = jsonBridges.getString(bridge)
-                        bridges.add(UICheatSheetStorage::class.java.javaClass.classLoader?.loadClass(bridgeName)?.getConstructor(Context::class.java)?.newInstance(context) as ExampleBridge)
+                        bridges.add(Class.forName(bridgeName).getConstructor(Context::class.java).newInstance(context) as ExampleBridge)
                     }
                 }
             }
