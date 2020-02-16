@@ -41,25 +41,8 @@ class PagedRowAdapter(diffCallback: DiffUtil.ItemCallback<CheatSheetExampleRow>)
         holder.titleTextView.text = row?.title  //holder.itemView.context.getString(CheatSheetViewModel.exampleRows[position].titleId)
         val adapter = PagedCellAdapter(CheatSheetFragment.CellDiffUtilCallbak())
 
-        val cellSource = object: PositionalDataSource<CheatSheetExampleCell>(){
-            override fun loadInitial(
-                params: LoadInitialParams,
-                callback: LoadInitialCallback<CheatSheetExampleCell>
-            ) {
-                //val result: List<CheatSheetExampleCell> = row.getCells(params.requestedStartPosition, params.requestedLoadSize)
 
-                //callback.onResult(result, params.requestedStartPosition)
-            }
-
-            override fun loadRange(
-                params: LoadRangeParams,
-                callback: LoadRangeCallback<CheatSheetExampleCell>
-            ) {
-
-            }
-        }
-
-        val pagedList: PagedList<CheatSheetExampleCell> = PagedList(cellSource as DataSource<Int, CheatSheetExampleCell>,
+        val pagedList: PagedList<CheatSheetExampleCell> = PagedList(row?.cellSource as DataSource<Int, CheatSheetExampleCell>,
             CheatSheetFragment.paggingConfig,
             Executors.newSingleThreadExecutor(),
             MainThreadExecutor()
