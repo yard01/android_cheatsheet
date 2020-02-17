@@ -1,8 +1,10 @@
 package com.github.yard01.sandbox.ui_cheatsheet
 
 import android.content.Context
+import android.util.Log
 import com.github.yard01.sandbox.cheatsheet.CheatSheetProvider
 import com.github.yard01.sandbox.cheatsheet.CheatSheetProviderFactory
+import com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge
 
 class UICheatSheetProviderFactory (override val context : Context): CheatSheetProviderFactory {
     override val id: String = this.javaClass.name

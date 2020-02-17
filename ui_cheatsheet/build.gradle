@@ -13,6 +13,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -36,6 +37,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
     //implementation deps.retrofit.gson
     implementation project(':cheatsheet')
+//    implementation project(':navigator_example')
     implementation project(':navigator_example_bridge')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

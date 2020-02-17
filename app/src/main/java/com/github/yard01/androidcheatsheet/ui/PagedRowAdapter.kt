@@ -49,6 +49,7 @@ class PagedRowAdapter(diffCallback: DiffUtil.ItemCallback<CheatSheetExampleRow>)
         )
 
         Observable.just(pagedList).subscribe(adapter::submitList)
+        holder.pager.adapter = adapter
 
     }
 
