@@ -11,6 +11,7 @@ import com.github.yard01.sandbox.navigator_example.MainActivity
 class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider {
 
     override fun executeExample() {
+        /*
         val intent1: Intent = Intent().apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             setComponent(ComponentName("com.github.yard01.androidcheatsheet","com.github.yard01.sandbox.navigator_example.MainActivity"))
@@ -20,13 +21,12 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
             setClassName("com.github.yard01.sandbox.navigator_example","MainActivity")
             //setComponent(ComponentName("com.github.yard01.sandbox.navigator_example","MainActivity"))
         }
+        */
 
         val intent = Intent(context, MainActivity::class.java).apply {
-        //    putExtra(ID_PARAMETER, "VALUE")
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
-        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        context.startActivity(intent1)
+        context.startActivity(intent)
     }
 
     override fun getIcon(): Drawable? {
