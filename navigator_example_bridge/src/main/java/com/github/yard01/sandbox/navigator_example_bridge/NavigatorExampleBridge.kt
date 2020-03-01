@@ -12,7 +12,7 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
 
     override fun executeExample() {
         val intent1: Intent = Intent().apply {
-            //addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             setComponent(ComponentName("com.github.yard01.androidcheatsheet","com.github.yard01.sandbox.navigator_example.MainActivity"))
         }
         val intent2: Intent = Intent().apply {
