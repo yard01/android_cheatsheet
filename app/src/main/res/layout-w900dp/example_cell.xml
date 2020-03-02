@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="80dp"
-    android:layout_height="80dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
     <ImageView
         android:id="@+id/icon_imageView"
         android:layout_width="match_parent"
@@ -13,8 +15,10 @@
 
     <TextView
         android:id="@+id/info_textView"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:text="TextView"
         tools:text="@android:string/VideoView_error_text_invalid_progressive_playback" />
 
