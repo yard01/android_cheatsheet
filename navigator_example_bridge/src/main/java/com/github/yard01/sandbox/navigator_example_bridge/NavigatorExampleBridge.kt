@@ -1,5 +1,5 @@
 package com.github.yard01.sandbox.navigator_example_bridge
-import android.content.ComponentName
+
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -19,19 +19,31 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
     }
 
     override fun getIcon(): Drawable? {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            return context.getDrawable(R.drawable.ic_launcher_background)
-        return context.resources.getDrawable(R.drawable.ic_launcher_background)
+        return getDrawable(R.drawable.ic_launcher_background)
     }
 
     override fun getInfo(): String {
         return context.getString(R.string.navigator_app_name)
     }
 
-    override fun getScreenshots(): Array<Drawable> {
-        return emptyArray<Drawable>()
+    private fun getDrawable(id: Int): Drawable? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            return context.getDrawable(id)
+        return context.resources.getDrawable(id)
+    }
+
+    override fun getScreenshotCount(): Int = 2
+
+    override fun getScreenshot(index: Int): Drawable? {
+        when (index) {
+            0 -> return getDrawable(R.drawable.screenshot_1)
+            1 -> return getDrawable(R.drawable.screenshot_2)
+            2 -> return getDrawable(R.drawable.screenshot_3)
+        }
+
+        return null
+//        return context.getDrawable(R.drawable.ic_menu_gallery)!!
         //Array<Drawable?>?
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
