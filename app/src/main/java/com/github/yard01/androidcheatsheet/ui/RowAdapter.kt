@@ -13,7 +13,7 @@ class RowAdapter: RecyclerView.Adapter<RowAdapter.RowViewHolder>() {
 
     inner class RowViewHolder(var rowView: View): RecyclerView.ViewHolder(rowView) {
         val title: TextView = rowView.rowTitle_TextView
-        val pager: ViewPager2 = rowView.cells_viewPager
+        val pager = rowView.cells_viewPager
 
         //val contentView: TextView = rowView.content
     }

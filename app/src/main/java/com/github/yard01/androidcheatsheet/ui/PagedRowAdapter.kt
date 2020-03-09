@@ -4,31 +4,36 @@ package com.github.yard01.androidcheatsheet.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
-import androidx.paging.PositionalDataSource
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.github.yard01.androidcheatsheet.R
 import com.github.yard01.sandbox.cheatsheet.MainThreadExecutor
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
-import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.example_row.view.*
 import java.util.concurrent.Executors
 
-
 class PagedRowAdapter(diffCallback: DiffUtil.ItemCallback<CheatSheetExampleRow>) :
     PagedListAdapter<CheatSheetExampleRow, PagedRowAdapter.RowViewHolder>(diffCallback) {
 
+    init {
+
+    }
     inner class RowViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val layoutManager =
+            LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+
         val titleTextView: TextView = itemView.rowTitle_TextView
-        val pager: ViewPager2 = itemView.cells_viewPager
+        val pager = itemView.cells_viewPager
+        init {
+            pager.layoutManager = layoutManager
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowViewHolder {
