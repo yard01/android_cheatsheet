@@ -6,7 +6,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/screenshot_list_RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="120dp" />
+        android:layout_height="160dp" />
 
     <Button
         android:id="@+id/run_example_Button"

@@ -32,7 +32,7 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
         return context.resources.getDrawable(id)
     }
 
-    override fun getScreenshotCount(): Int = 2
+    override fun getScreenshotCount(): Int = 3
 
     override fun getScreenshot(index: Int): Drawable? {
         when (index) {

@@ -91,4 +91,9 @@ class CheatSheetFragment: Fragment() {
 
         return result
     }
+
+    override fun onDetach() {
+        super.onDetach()
+
+    }
 }

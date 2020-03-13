@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.yard01.androidcheatsheet.R
@@ -14,23 +16,39 @@ import com.github.yard01.sandbox.cheatsheet.ExampleBridge
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
 import com.github.yard01.sandbox.cheatsheet.viewmodel.ScreenshotProvider
 import kotlinx.android.synthetic.main.example_page_fragment.view.*
+import kotlinx.android.synthetic.main.screenshot.view.*
 
 class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
 
     class ScreenshotAdapter(val bridge: ExampleBridge): RecyclerView.Adapter<ScreenshotAdapter.ScreenshotHolder>() {
 
-        inner class ScreenshotHolder(var rowView: View): RecyclerView.ViewHolder(rowView) {
-            //val title: TextView = rowView.rowTitle_TextView
-            //val pager = rowView.cells_viewPager
+        inner class ScreenshotHolder(var view: View): RecyclerView.ViewHolder(view) {
+            val screenshot = view.screenshot_ImageView
+            init {
+                screenshot.setOnClickListener { view -> clickImage(view) }
+            }
+            fun clickImage(view: View) {
+                val fullScreenView = ScreenshotFragment((view as ImageView).drawable)
+                //view.context.
+                (view.context as FragmentActivity).supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.cheatsheet_container, fullScreenView)
+                    .addToBackStack(null)
+                    .commit()
 
-            //val contentView: TextView = rowView.content
+                //screenshot.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            }
         }
 
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
         ): ScreenshotAdapter.ScreenshotHolder {
-            TODO("Not yet implemented")
+            val view: View = LayoutInflater.from(parent.context) //в родительское окно встраивается View с LinearLayout, на котором лежат визуальные элементы строки
+                .inflate(com.github.yard01.androidcheatsheet.R.layout.screenshot,
+                    parent,
+                    false)
+            return ScreenshotHolder(view)
         }
 
         override fun getItemCount(): Int {
@@ -41,7 +59,7 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
 
         override fun onBindViewHolder(holder: ScreenshotAdapter.ScreenshotHolder, position: Int) {
             val drawable = (bridge as ScreenshotProvider).getScreenshot(position)
-            
+            holder.screenshot.setImageDrawable(drawable)
         }
 
     }
@@ -63,7 +81,7 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         val screensotRecyclerView = result.screenshot_list_RecyclerView
         screensotRecyclerView.layoutManager = layoutManager
-
+        screensotRecyclerView.adapter = ScreenshotAdapter(this.cell.bridge)
         return result
     }
 }
