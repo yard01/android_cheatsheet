@@ -54,6 +54,7 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
         val cell = this.getItem(position)
         if (cell != null) {
             holder.icon.setImageDrawable(cell?.bridge?.getIcon())
+            holder.icon.setBackgroundDrawable(cell.bridge.getBackground())
             holder.info.text = cell?.bridge?.getInfo()
             holder.itemView.setOnClickListener { view -> clickCell(view, cell) }
         }

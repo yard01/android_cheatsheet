@@ -4,4 +4,5 @@ import android.graphics.drawable.Drawable
 
 interface IconProvider {
     fun getIcon(): Drawable?
+    fun getBackground(): Drawable?
 }
