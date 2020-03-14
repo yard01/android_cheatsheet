@@ -12,6 +12,7 @@ import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.yard01.androidcheatsheet.CheatSheetContentActivity
 import com.github.yard01.androidcheatsheet.R
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
 import kotlinx.android.synthetic.main.example_cell.view.*
@@ -22,10 +23,11 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
         val BUFFER_SIZE = 4
         fun clickCell(view: View, cell: CheatSheetExampleCell) {
             val page: ExamplePageFragment = ExamplePageFragment(cell)
+
             //view.context.
             (view.context as FragmentActivity).supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.cheatsheet_container, page)
+                .replace(R.id.cheatsheet_container, page, CheatSheetContentActivity.FRAGMENT_TAG)
                 .addToBackStack(null)
                 .commit()
             //Log.d("celladapder", ""+(view.context as FragmentActivity).supportFragmentManager)

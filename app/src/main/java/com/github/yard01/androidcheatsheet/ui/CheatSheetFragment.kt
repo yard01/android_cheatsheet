@@ -30,6 +30,7 @@ class CheatSheetFragment: Fragment() {
             .build();
     }
 
+
     class RowDiffUtilCallbak: DiffUtil.ItemCallback<CheatSheetExampleRow>() {
         override fun areItemsTheSame(//сравнивает идентификаторы строк
             oldItem: CheatSheetExampleRow,

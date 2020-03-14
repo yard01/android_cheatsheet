@@ -9,6 +9,7 @@ import com.github.yard01.sandbox.cheatsheet.CheatSheetProvider
 class CheatSheetContentActivity : AppCompatActivity() {
     companion object {
         val PROVIDER_ID_PARAMETER = "PROVIDER_ID"
+        val FRAGMENT_TAG = "FRAGMENT_TAG"
     }
 
     private var provider : CheatSheetProvider? = null
@@ -19,7 +20,10 @@ class CheatSheetContentActivity : AppCompatActivity() {
         savedInstanceState?.getString(PROVIDER_ID_PARAMETER)
 
         provider = MainActivity.currentFactory?.createProvider()
-        var fragment = CheatSheetFragment()
+        var fragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TAG)
+
+        if (fragment == null) fragment = CheatSheetFragment()
+
         supportFragmentManager.beginTransaction().replace(
             R.id.cheatsheet_container,
             fragment

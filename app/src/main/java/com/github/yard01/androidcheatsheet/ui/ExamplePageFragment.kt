@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.yard01.androidcheatsheet.CheatSheetContentActivity
 import com.github.yard01.androidcheatsheet.R
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
@@ -19,6 +20,11 @@ import kotlinx.android.synthetic.main.example_page_fragment.view.*
 import kotlinx.android.synthetic.main.screenshot.view.*
 
 class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
+    //var cell: CheatSheetExampleCell? = null
+
+    //constructor(_cell: CheatSheetExampleCell): this() {
+    //    cell = _cell
+    //}
 
     class ScreenshotAdapter(val bridge: ExampleBridge): RecyclerView.Adapter<ScreenshotAdapter.ScreenshotHolder>() {
 
@@ -32,7 +38,7 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
                 //view.context.
                 (view.context as FragmentActivity).supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.cheatsheet_container, fullScreenView)
+                    .replace(R.id.cheatsheet_container, fullScreenView, CheatSheetContentActivity.FRAGMENT_TAG)
                     .addToBackStack(null)
                     .commit()
 
@@ -65,7 +71,8 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
     }
 
     fun clickRun(view: View) {
-       this.cell.bridge.executeExample()
+        if (this.cell != null)
+            this.cell!!.bridge.executeExample()
     }
 
     override fun onCreateView(
@@ -81,7 +88,18 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         val screensotRecyclerView = result.screenshot_list_RecyclerView
         screensotRecyclerView.layoutManager = layoutManager
-        screensotRecyclerView.adapter = ScreenshotAdapter(this.cell.bridge)
+        if (this.cell != null)
+            screensotRecyclerView.adapter = ScreenshotAdapter(this.cell!!.bridge)
         return result
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setRetainInstance(true);
     }
 }
