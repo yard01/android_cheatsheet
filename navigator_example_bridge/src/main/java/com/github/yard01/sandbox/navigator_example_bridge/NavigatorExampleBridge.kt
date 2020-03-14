@@ -28,15 +28,15 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
         //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         //returAppCompatDrawableManager.get().getDrawable(context, R.drawable.ic_launcher_background)
         //return ContextCompat.getDrawable(context, R.drawable.ic_launcher_foreground)// .ic_launcher_background)
-        return getDrawable(R.drawable.navigator_fgr)
+        return getVectorDrawable(R.drawable.navigator_fgr)
         //return setVectorForPreLollipop(R.drawable.ic_launcher_foreground, context)
     }
 
     override fun getBackground(): Drawable? {
-        return getDrawable(R.drawable.navigator_bckg)
+        return getVectorDrawable(R.drawable.navigator_bckg)
     }
 
-    fun getDrawable(
+    fun getVectorDrawable(
         resourceId: Int
     ): Drawable? {
         val icon: Drawable?
@@ -55,12 +55,12 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
     override fun getInfo(): String {
         return context.getString(R.string.navigator_app_name)
     }
-/*
+
     private fun getDrawable(id: Int): Drawable? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             return context.getDrawable(id)
         return context.resources.getDrawable(id)
-    }*/
+    }
 
     override fun getScreenshotCount(): Int = 3
 
