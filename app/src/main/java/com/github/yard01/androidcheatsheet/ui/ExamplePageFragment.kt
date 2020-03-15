@@ -64,7 +64,9 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
         }
 
         override fun onBindViewHolder(holder: ScreenshotAdapter.ScreenshotHolder, position: Int) {
+            //val drawable = (bridge as ScreenshotProvider).getScreenshot(position)
             val drawable = (bridge as ScreenshotProvider).getScreenshot(position)
+
             holder.screenshot.setImageDrawable(drawable)
         }
 

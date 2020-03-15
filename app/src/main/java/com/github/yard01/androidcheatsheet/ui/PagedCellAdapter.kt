@@ -1,7 +1,6 @@
 package com.github.yard01.androidcheatsheet.ui
 
-import android.app.Activity
-import android.util.Log
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,8 +52,14 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
     override fun onBindViewHolder(holder: CellViewHolder, position: Int) {
         val cell = this.getItem(position)
         if (cell != null) {
-            holder.icon.setImageDrawable(cell?.bridge?.getIcon())
-            holder.icon.setBackgroundDrawable(cell.bridge.getBackground())
+            //var drawable: Drawable? = null
+            //holder.icon.setImageResource(cell.bridge.getIconId()) // .setImageDrawable(cell?.bridge?.getIcon())
+            //holder.icon.setBackgroundResource(cell.bridge.getIconBackgroundId())
+            //holder.icon.background = drawable// . setBackgroundDrawable()
+            holder.icon.setImageDrawable(cell.bridge.getIcon())
+            holder.icon.background = cell.bridge.getIconBackground()
+
+                    //holder.icon.setBa
             holder.info.text = cell?.bridge?.getInfo()
             holder.itemView.setOnClickListener { view -> clickCell(view, cell) }
         }

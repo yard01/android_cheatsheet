@@ -26,34 +26,46 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
     //@SuppressLint("RestrictedApi")
     override fun getIcon(): Drawable? {
         //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        //returAppCompatDrawableManager.get().getDrawable(context, R.drawable.ic_launcher_background)
-        //return ContextCompat.getDrawable(context, R.drawable.ic_launcher_foreground)// .ic_launcher_background)
+        //returAppCompatDrawableManager.get().getDrawable(context, R.drawable.scrolling_icon_background)
+        //return ContextCompat.getDrawable(context, R.drawable.scrolling_icon_foreground)// .scrolling_icon_background)
         return getVectorDrawable(R.drawable.navigator_fgr)
-        //return setVectorForPreLollipop(R.drawable.ic_launcher_foreground, context)
+        //return setVectorForPreLollipop(R.drawable.scrolling_icon_foreground, context)
     }
 
-    override fun getBackground(): Drawable? {
+    private fun getIconId(): Int {
+        return R.drawable.navigator_fgr
+    }
+
+    override fun getIconBackground(): Drawable? {
         return getVectorDrawable(R.drawable.navigator_bckg)
+    }
+
+    private fun getIconBackgroundId(): Int {
+        return R.drawable.navigator_bckg
     }
 
     fun getVectorDrawable(
         resourceId: Int
     ): Drawable? {
-        val icon: Drawable?
-        //VectorDrawableCompat.
-        icon = (if (true) {//(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            VectorDrawableCompat.create(
+        return  VectorDrawableCompat.create(
                 context.resources,
                 resourceId,
                 context.theme
             )
-        } else {
-            //context.resources.getDrawable(resourceId, context.theme)
-        }) as Drawable?
-        return icon
+//        val icon: Drawable?
+//        icon = (if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//            VectorDrawableCompat.create(
+//                context.resources,
+//                resourceId,
+//                context.theme
+//            )
+//        } else {
+//            context.resources.getDrawable(resourceId, context.theme)
+//        }) as Drawable?
+//        return icon
     }
     override fun getInfo(): String {
-        return context.getString(R.string.navigator_app_name)
+        return context.getString(R.string.navigator_app_name) //context.getString(R.string.navigator_app_name)
     }
 
     private fun getDrawable(id: Int): Drawable? {
@@ -65,16 +77,20 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
     override fun getScreenshotCount(): Int = 3
 
     override fun getScreenshot(index: Int): Drawable? {
-        when (index) {
-            0 -> return getDrawable(R.drawable.screenshot_1)
-            1 -> return getDrawable(R.drawable.screenshot_2)
-            2 -> return getDrawable(R.drawable.screenshot_3)
-        }
-
-        return null
+        return getDrawable(getScreenshotId(index))
 //        return context.getDrawable(R.drawable.ic_menu_gallery)!!
         //Array<Drawable?>?
     }
 
+    private fun getScreenshotId(index: Int): Int {
+        when (index) {
+            0 -> return R.drawable.screenshot_1
+            1 -> return R.drawable.screenshot_2
+            2 -> return R.drawable.screenshot_3
+        }
+        return -1
+//        return context.getDrawable(R.drawable.ic_menu_gallery)!!
+        //Array<Drawable?>?
+    }
 
 }

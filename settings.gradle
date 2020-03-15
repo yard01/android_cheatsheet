@@ -1,2 +1,4 @@
 include ':app', ':ui_cheatsheet', ':cheatsheet', ':cheatsheetregister', ':detail_example', ':navigator_example', ':navigator_example_bridge', ':scrollexample'
 rootProject.name='Android Cheat Sheet'
+include ':scrolling_example'
+include ':scrolling_example_bridge'

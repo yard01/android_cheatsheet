@@ -28,8 +28,6 @@ class UICheatSheetStorage(var context: Context): ContentStorage {
 
         if (position + size >= headers.size) len =  headers.size - position - 1
 
-        var list: List<String>
-
         for (i in position..len + position) {
             var row = CheatSheetExampleRow()
             row.title = headers[i]
