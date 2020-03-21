@@ -2,42 +2,42 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    android:id="@+id/ui_navigator_mobile_navigation"
+    app:startDestination="@+id/ui_navigator_nav_home">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/ui_navigator_nav_home"
         android:name="com.github.yard01.sandbox.navigator_example.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/ui_navigator_menu_home"
+        tools:layout="@layout/ui_navigator_fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/ui_navigator_nav_gallery"
         android:name="com.github.yard01.sandbox.navigator_example.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="@string/ui_navigator_menu_gallery"
+        tools:layout="@layout/ui_navigator_fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/ui_navigator_nav_slideshow"
         android:name="com.github.yard01.sandbox.navigator_example.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="@string/ui_navigator_menu_slideshow"
+        tools:layout="@layout/ui_navigator_fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
+        android:id="@+id/ui_navigator_nav_tools"
         android:name="com.github.yard01.sandbox.navigator_example.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:label="@string/ui_navigator_menu_tools"
+        tools:layout="@layout/ui_navigator_fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
+        android:id="@+id/ui_navigator_nav_share"
         android:name="com.github.yard01.sandbox.navigator_example.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:label="@string/ui_navigator_menu_share"
+        tools:layout="@layout/ui_navigator_fragment_share" />
 
     <fragment
-        android:id="@+id/nav_send"
+        android:id="@+id/ui_navigator_nav_send"
         android:name="com.github.yard01.sandbox.navigator_example.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:label="@string/ui_navigator_menu_send"
+        tools:layout="@layout/ui_navigator_fragment_send" />
 </navigation>

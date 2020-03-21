@@ -65,7 +65,7 @@ class ScrollingExampleBridge (var context: Context): ExampleBridge, IconProvider
     }
 
     override fun getDescription(): String {
-        return context.getString(R.string.scrolling_app_info)
+        return context.getString(R.string.scrolling_app_description)
     }
 
     override fun getScreenshotCount(): Int {

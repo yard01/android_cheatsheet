@@ -21,8 +21,8 @@ class ShareFragment : Fragment() {
     ): View? {
         shareViewModel =
             ViewModelProviders.of(this).get(ShareViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_share, container, false)
-        val textView: TextView = root.findViewById(R.id.text_share)
+        val root = inflater.inflate(R.layout.ui_navigator_fragment_share, container, false)
+        val textView: TextView = root.findViewById(R.id.ui_navigator_text_share)
         shareViewModel.text.observe(this, Observer {
             textView.text = it
         })

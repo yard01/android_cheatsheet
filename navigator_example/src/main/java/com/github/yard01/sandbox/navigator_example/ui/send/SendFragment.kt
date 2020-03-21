@@ -21,8 +21,8 @@ class SendFragment : Fragment() {
     ): View? {
         sendViewModel =
             ViewModelProviders.of(this).get(SendViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_send, container, false)
-        val textView: TextView = root.findViewById(R.id.text_send)
+        val root = inflater.inflate(R.layout.ui_navigator_fragment_send, container, false)
+        val textView: TextView = root.findViewById(R.id.ui_navigator_text_send)
         sendViewModel.text.observe(this, Observer {
             textView.text = it
         })

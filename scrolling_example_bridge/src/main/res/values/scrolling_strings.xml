@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="scrolling_app_name">Scrolling Example</string>
-    <string name="scrolling_button_run">Run</string>
-    <string name="scrolling_app_info">
 
-
+    <string name="scrolling_app_description">
+            <p> The example demonstrates the scrolling of a NestedScrollView. </p>
+            <p> When scrolling text, NestedScrollView translates its behavior to the AppBar, with the property</p>
+            <p><b>app:layout_behavior="@string/appbar_scrolling_view_behavior"</b> </p>
     </string>
 </resources>
