@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scrolling_app_name">Прокрутка</string>
+    <string name="scrolling_app_info">
+        <![CDATA[
+        <html>
+            <p>Приложение демонстрирует прокрутку элемента NestedScrollView.</p>
+        <p>При прокрутке текста NestedScrollView транслирует свое поведение на AppBar, благодаря установленному свойству</p>
+        <p><b>app:layout_behavior="@string/appbar_scrolling_view_behavior"</b></p>
+        </html>
+        ]]>
+    </string>
+
+</resources>

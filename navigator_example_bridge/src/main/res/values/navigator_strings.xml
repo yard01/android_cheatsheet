@@ -1,3 +1,5 @@
 <resources>
     <string name="navigator_app_name">navigator example</string>
+    <string name="navigator_app_description">navigator example</string>
+
 </resources>

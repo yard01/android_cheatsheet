@@ -23,20 +23,20 @@ class ScrollingExampleBridge (var context: Context): ExampleBridge, IconProvider
         context.startActivity(intent)
     }
 
-    private fun getIconId(): Int {
-        return R.drawable.scrolling_icon_foreground // .scrolling_icon_foreground
+    override fun getIconId(): Int {
+        return R.drawable.scrolling_activity_icon // .scrolling_icon_foreground // .scrolling_icon_foreground
     }
 
-    private fun getIconBackgroundId(): Int {
-        return R.drawable.scrolling_icon_background
+    override fun getIconBackgroundId(): Int {
+        return R.drawable.scrolling_activity_icon // .scrolling_icon_background
     }
 
-    override fun getIcon(): Drawable? {
+    private fun getIcon(): Drawable? {
         return getVectorDrawable(R.drawable.scrolling_icon_foreground)
     }
 
 
-    override fun getIconBackground(): Drawable? {
+    private fun getIconBackground(): Drawable? {
         return getVectorDrawable(R.drawable.scrolling_icon_background)
     }
 
@@ -60,8 +60,12 @@ class ScrollingExampleBridge (var context: Context): ExampleBridge, IconProvider
 //        }) as Drawable?
 //        return icon
     }
-    override fun getInfo(): String {
+    override fun getName(): String {
         return context.getString(R.string.scrolling_app_name)
+    }
+
+    override fun getDescription(): String {
+        return context.getString(R.string.scrolling_app_info)
     }
 
     override fun getScreenshotCount(): Int {
@@ -74,13 +78,12 @@ class ScrollingExampleBridge (var context: Context): ExampleBridge, IconProvider
         return context.resources.getDrawable(id)
     }
 
-    override fun getScreenshot(index: Int): Drawable? {
+    private fun getScreenshot(index: Int): Drawable? {
         return getDrawable(getScreenshotId(index))
     }
 
-    private fun getScreenshotId(index: Int): Int {
+    override fun getScreenshotId(index: Int): Int {
         ///var drawable: Drawable? = null
-
         when (index) {
             0 -> return R.drawable.scrolling_screenshot_0
             1 -> return R.drawable.scrolling_screenshot_1

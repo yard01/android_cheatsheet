@@ -1,7 +1,8 @@
 package com.github.yard01.androidcheatsheet.ui
 
-import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,9 +66,8 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
 
         override fun onBindViewHolder(holder: ScreenshotAdapter.ScreenshotHolder, position: Int) {
             //val drawable = (bridge as ScreenshotProvider).getScreenshot(position)
-            val drawable = (bridge as ScreenshotProvider).getScreenshot(position)
-
-            holder.screenshot.setImageDrawable(drawable)
+            //holder.screenshot.setImageDrawable(drawable)
+            holder.screenshot.setImageResource((bridge as ScreenshotProvider).getScreenshotId(position))
         }
 
     }
@@ -84,6 +84,17 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
     ): View? {
         val result: View = inflater.inflate(R.layout.example_page_fragment, container, false)
         val runButton: Button = result.run_example_Button// .findViewById(R.id.run_example_Button)
+        runButton.text = this.getString(R.string.example_run_button)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            result.example_description_TextView.text = Html.fromHtml(
+                this.cell.bridge.getDescription(),
+                Html.FROM_HTML_MODE_COMPACT)
+         else
+            result.example_description_TextView.text = Html.fromHtml(
+                this.cell.bridge.getDescription()
+            )
+
         runButton.setOnClickListener { view -> clickRun(view) }
 
         val layoutManager =

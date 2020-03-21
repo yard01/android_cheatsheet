@@ -24,7 +24,7 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
     }
 
     //@SuppressLint("RestrictedApi")
-    override fun getIcon(): Drawable? {
+    private fun getIcon(): Drawable? {
         //AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         //returAppCompatDrawableManager.get().getDrawable(context, R.drawable.scrolling_icon_background)
         //return ContextCompat.getDrawable(context, R.drawable.scrolling_icon_foreground)// .scrolling_icon_background)
@@ -32,16 +32,16 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
         //return setVectorForPreLollipop(R.drawable.scrolling_icon_foreground, context)
     }
 
-    private fun getIconId(): Int {
-        return R.drawable.navigator_fgr
+    override fun getIconId(): Int {
+        return R.drawable.navigator_drawer_icon // .navigator_fgr
     }
 
-    override fun getIconBackground(): Drawable? {
-        return getVectorDrawable(R.drawable.navigator_bckg)
+    private fun getIconBackground(): Drawable? {
+        return null//getVectorDrawable(R.drawable.navigator_bckg)
     }
 
-    private fun getIconBackgroundId(): Int {
-        return R.drawable.navigator_bckg
+    override fun getIconBackgroundId(): Int {
+        return R.drawable.navigator_drawer_icon // .navigator_bckg
     }
 
     fun getVectorDrawable(
@@ -64,8 +64,12 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
 //        }) as Drawable?
 //        return icon
     }
-    override fun getInfo(): String {
+    override fun getName(): String {
         return context.getString(R.string.navigator_app_name) //context.getString(R.string.navigator_app_name)
+    }
+
+    override fun getDescription(): String {
+        return context.getString(R.string.navigator_app_description)
     }
 
     private fun getDrawable(id: Int): Drawable? {
@@ -76,17 +80,17 @@ class NavigatorExampleBridge(var context: Context) : ExampleBridge, IconProvider
 
     override fun getScreenshotCount(): Int = 3
 
-    override fun getScreenshot(index: Int): Drawable? {
+    private fun getScreenshot(index: Int): Drawable? {
         return getDrawable(getScreenshotId(index))
 //        return context.getDrawable(R.drawable.ic_menu_gallery)!!
         //Array<Drawable?>?
     }
 
-    private fun getScreenshotId(index: Int): Int {
+    override fun getScreenshotId(index: Int): Int {
         when (index) {
-            0 -> return R.drawable.screenshot_1
-            1 -> return R.drawable.screenshot_2
-            2 -> return R.drawable.screenshot_3
+            0 -> return R.drawable.navigator_screenshot_1
+            1 -> return R.drawable.navigator_screenshot_2
+            2 -> return R.drawable.navigator_screenshot_3
         }
         return -1
 //        return context.getDrawable(R.drawable.ic_menu_gallery)!!

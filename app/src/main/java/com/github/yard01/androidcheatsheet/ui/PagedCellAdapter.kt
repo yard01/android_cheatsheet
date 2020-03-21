@@ -1,6 +1,5 @@
 package com.github.yard01.androidcheatsheet.ui
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,7 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
 
     inner class CellViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val icon: ImageView = itemView.icon_imageView
-        val info: TextView = itemView.info_textView
+        val info: TextView = itemView.example_name_textView
     }
 
     val pagedListConfig = PagedList.Config.Builder()
@@ -52,15 +51,13 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
     override fun onBindViewHolder(holder: CellViewHolder, position: Int) {
         val cell = this.getItem(position)
         if (cell != null) {
-            //var drawable: Drawable? = null
-            //holder.icon.setImageResource(cell.bridge.getIconId()) // .setImageDrawable(cell?.bridge?.getIcon())
-            //holder.icon.setBackgroundResource(cell.bridge.getIconBackgroundId())
-            //holder.icon.background = drawable// . setBackgroundDrawable()
-            holder.icon.setImageDrawable(cell.bridge.getIcon())
-            holder.icon.background = cell.bridge.getIconBackground()
+            holder.icon.setImageResource(cell.bridge.getIconId()) // .setImageDrawable(cell?.bridge?.getIcon())
+            holder.icon.setBackgroundResource(cell.bridge.getIconBackgroundId())
+            //holder.icon.setImageDrawable(cell.bridge.getIcon())
+            //holder.icon.background = cell.bridge.getIconBackground()
 
                     //holder.icon.setBa
-            holder.info.text = cell?.bridge?.getInfo()
+            holder.info.text = cell?.bridge?.getName()
             holder.itemView.setOnClickListener { view -> clickCell(view, cell) }
         }
     }
