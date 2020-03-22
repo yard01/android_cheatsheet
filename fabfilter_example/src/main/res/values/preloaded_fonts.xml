@@ -1,0 +1,5 @@
+<?xml version="1.0" ?><resources>
+    <array name="ui_fabfilter_preloaded_fonts" translatable="false">
+        <item>@font/ui_fabfilter_annie_use_your_telescope</item>
+    </array>
+</resources>

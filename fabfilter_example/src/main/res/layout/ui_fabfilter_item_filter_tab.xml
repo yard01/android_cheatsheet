@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ui_fabfilter_tab_container"
+    android:layout_width="@dimen/ui_fabfilter_tab_item_width"
+    android:layout_height="@dimen/ui_fabfilter_tabs_height"
+    tools:background="@color/ui_fabfilter_tab_bg_color">
+
+    <View
+        android:id="@+id/ui_fabfilter_tab_pill"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/ui_fabfilter_ic_pill"
+        android:backgroundTint="@color/ui_fabfilter_tab_unselected_color" />
+
+    <View
+        android:id="@+id/ui_fabfilter_tab_badge"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignTop="@id/ui_fabfilter_tab_pill"
+        android:layout_alignEnd="@id/ui_fabfilter_tab_pill"
+        android:layout_marginTop="-6dp"
+        android:layout_marginEnd="-8dp"
+        android:background="@drawable/ui_fabfilter_tab_badge"
+        android:scaleX="0"
+        android:scaleY="0"
+        tools:scaleX="1"
+        tools:scaleY="1" />
+</RelativeLayout>

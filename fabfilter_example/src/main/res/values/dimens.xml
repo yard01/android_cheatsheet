@@ -1,0 +1,24 @@
+<?xml version="1.0" ?><resources>
+    <dimen name="ui_fabfilter_fab_size">72dp</dimen>
+    <dimen name="ui_fabfilter_fab_size_inset">56dp</dimen>
+    <dimen name="ui_fabfilter_sheet_peek_height">340dp</dimen>
+
+    <!-- sheet_peek_height/2 - fabsize/2
+            = 170 - 36 = 134-->
+    <dimen name="ui_fabfilter_fab_scene2_margin_bottom">134dp</dimen>
+    <dimen name="ui_fabfilter_fab_radius">36dp</dimen>
+    <dimen name="ui_fabfilter_fab_elevation">16dp</dimen>
+    <dimen name="ui_fabfilter_fab_elevation_2">32dp</dimen>
+    <dimen name="ui_fabfilter_fab_pressed_elevation">8dp</dimen>
+
+    <dimen name="ui_fabfilter_tabs_height">64dp</dimen>
+
+    <dimen name="ui_fabfilter_thumb_size">40dp</dimen>
+    <dimen name="ui_fabfilter_tab_item_width">110dp</dimen>
+    <dimen name="ui_fabfilter_bottom_bar_icon_padding">24dp</dimen>
+    <dimen name="ui_fabfilter_bottom_bar_height">@dimen/ui_fabfilter_fab_size</dimen>
+    <dimen name="ui_fabfilter_filter_layout_padding">32dp</dimen>
+    <dimen name="ui_fabfilter_list_item_vertical_padding">24dp</dimen>
+    <dimen name="ui_fabfilter_list_item_horizontal_padding">16dp</dimen>
+    <dimen name="ui_fabfilter_fab_margin">32dp</dimen>
+</resources>

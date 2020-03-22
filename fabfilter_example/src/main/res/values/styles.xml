@@ -1,0 +1,22 @@
+<?xml version="1.0" ?><resources>
+
+    <!-- Base application theme. -->
+    <style name="ui_fabfilter_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/ui_fabfilter_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/ui_fabfilter_colorPrimary</item>
+        <item name="colorAccent">@color/ui_fabfilter_colorAccent</item>
+        <item name="android:windowBackground">@color/ui_fabfilter_windowBackground</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="ui_fabfilter_AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="ui_fabfilter_AppTheme.AppBarOverlay.Light" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="ui_fabfilter_AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/ui_fabfilter_windowBackground</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+</resources>
