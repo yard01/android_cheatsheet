@@ -1,4 +1,5 @@
-include ':app', ':ui_cheatsheet', ':cheatsheet', ':cheatsheetregister', ':detail_example', ':navigator_example', ':navigator_example_bridge', ':scrollexample'
+include ':app', ':ui_cheatsheet', ':cheatsheet', ':cheatsheetregister', ':detail_example', ':navigator_example', ':navigator_example_bridge', ':scrollexample', ':fabfilter_example'
 rootProject.name='Android Cheat Sheet'
 include ':scrolling_example'
 include ':scrolling_example_bridge'
+include ':fabfilter_example_bridge'

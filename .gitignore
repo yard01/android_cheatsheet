@@ -13,3 +13,4 @@
 /captures
 .externalNativeBuild
 .cxx
+add_prefix.py

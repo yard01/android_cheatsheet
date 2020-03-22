@@ -9,8 +9,8 @@
             <p><b>androidx.core.widget.NestedScrollView...<br>
             app:layout_behavior="@string/appbar_scrolling_view_behavior"</b></p>
             <p>AppBar прокручивается вместе с текстом</p>
+            <a href=https://developer.android.com/guide/navigation/navigation-ui>ссылка</a>
         </html>
         ]]>
     </string>
-
 </resources>

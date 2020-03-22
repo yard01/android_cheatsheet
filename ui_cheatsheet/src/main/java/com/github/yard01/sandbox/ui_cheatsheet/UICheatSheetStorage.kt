@@ -1,6 +1,7 @@
 package com.github.yard01.sandbox.ui_cheatsheet
 
 import android.content.Context
+
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
 import com.github.yard01.sandbox.cheatsheet.viewmodel.ContentStorage
@@ -27,6 +28,8 @@ class UICheatSheetStorage(var context: Context): ContentStorage {
         var result: ArrayList<CheatSheetExampleRow> = ArrayList()
 
         if (position + size >= headers.size) len =  headers.size - position - 1
+
+        //var fr: FabfilterExampleBridge? = null
 
         for (i in position..len + position) {
             var row = CheatSheetExampleRow()

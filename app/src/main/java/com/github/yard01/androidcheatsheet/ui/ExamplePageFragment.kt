@@ -3,6 +3,7 @@ package com.github.yard01.androidcheatsheet.ui
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -94,6 +95,7 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
             result.example_description_TextView.text = Html.fromHtml(
                 this.cell.bridge.getDescription()
             )
+        result.example_description_TextView.movementMethod = LinkMovementMethod.getInstance()
 
         runButton.setOnClickListener { view -> clickRun(view) }
 

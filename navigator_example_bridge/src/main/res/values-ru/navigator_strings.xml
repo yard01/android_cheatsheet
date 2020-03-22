@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigator_app_name">Панель навигации</string>
+    <string name="navigator_app_description">
+        <![CDATA[
+        <html>
+            <p>Пример демонстрирует панель навигации.</p>
+            <p>...</p>
+            <a href=https://developer.android.com/guide/navigation/navigation-ui>Описание</a>
+        </html>
+        ]]>
+    </string>
+
+</resources>

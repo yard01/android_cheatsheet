@@ -9,7 +9,7 @@
             },
 
             {id:1,
-                bridges:[com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge]
+                bridges:[com.github.yard01.fabfilter_example_bridge.FabfilterExampleBridge]
             }
             ]
         }
