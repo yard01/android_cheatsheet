@@ -1,5 +1,6 @@
 package com.github.yard01.androidcheatsheet.ui
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -8,12 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.yard01.androidcheatsheet.CheatSheetContentActivity
 import com.github.yard01.androidcheatsheet.R
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
@@ -22,11 +20,6 @@ import kotlinx.android.synthetic.main.example_page_fragment.view.*
 import kotlinx.android.synthetic.main.screenshot.view.*
 
 class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
-    //var cell: CheatSheetExampleCell? = null
-
-    //constructor(_cell: CheatSheetExampleCell): this() {
-    //    cell = _cell
-    //}
 
     class ScreenshotAdapter(val bridge: ExampleBridge): RecyclerView.Adapter<ScreenshotAdapter.ScreenshotHolder>() {
 
@@ -35,16 +28,12 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
             init {
                 screenshot.setOnClickListener { view -> clickImage(view) }
             }
-            fun clickImage(view: View) {
-                val fullScreenView = ScreenshotFragment((view as ImageView).drawable)
-                //view.context.
-                (view.context as FragmentActivity).supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.cheatsheet_container, fullScreenView, CheatSheetContentActivity.FRAGMENT_TAG)
-                    .addToBackStack(null)
-                    .commit()
 
-                //screenshot.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            fun clickImage(view: View) {
+                val intent = Intent(view.context, FullscreenActivity::class.java).apply {
+                    putExtra(DRAWABLE_ID, view.tag as Int)
+                }
+                view.context.startActivity(intent)
             }
         }
 
@@ -69,6 +58,7 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
             //val drawable = (bridge as ScreenshotProvider).getScreenshot(position)
             //holder.screenshot.setImageDrawable(drawable)
             holder.screenshot.setImageResource((bridge as ScreenshotProvider).getScreenshotId(position))
+            holder.screenshot.tag = (bridge as ScreenshotProvider).getScreenshotId(position)
         }
 
     }
