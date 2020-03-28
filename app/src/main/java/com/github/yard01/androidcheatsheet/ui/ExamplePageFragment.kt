@@ -49,14 +49,10 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
         }
 
         override fun getItemCount(): Int {
-            //this.cell.
-            //bridge.
             return (bridge as ScreenshotProvider).getScreenshotCount()
         }
 
         override fun onBindViewHolder(holder: ScreenshotAdapter.ScreenshotHolder, position: Int) {
-            //val drawable = (bridge as ScreenshotProvider).getScreenshot(position)
-            //holder.screenshot.setImageDrawable(drawable)
             holder.screenshot.setImageResource((bridge as ScreenshotProvider).getScreenshotId(position))
             holder.screenshot.tag = (bridge as ScreenshotProvider).getScreenshotId(position)
         }
@@ -65,7 +61,7 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
 
     fun clickRun(view: View) {
         if (this.cell != null)
-            this.cell!!.bridge.executeExample()
+            this.cell.bridge.executeExample()
     }
 
     override fun onCreateView(

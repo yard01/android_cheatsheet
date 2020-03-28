@@ -4,8 +4,7 @@
         {rows:[
             {id:0,
                 bridges:[com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge,
-                         com.github.yard01.cheatsheet.scrolling_example_bridge.ScrollingExampleBridge,
-                com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge]
+                         com.github.yard01.cheatsheet.scrolling_example_bridge.ScrollingExampleBridge]
             },
 
             {id:1,

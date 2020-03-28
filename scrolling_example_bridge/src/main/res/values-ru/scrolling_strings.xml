@@ -9,7 +9,18 @@
             <p><b>androidx.core.widget.NestedScrollView...<br>
             app:layout_behavior="@string/appbar_scrolling_view_behavior"</b></p>
             <p>AppBar прокручивается вместе с текстом</p>
-            <a href=https://developer.android.com/guide/navigation/navigation-ui>ссылка</a>
+<p> Шаблон создает приложение со сворачивающейся панелью инструментов и прокруткой для просмотра длинного текста. Когда вы прокручиваете страницу, панель инструментов, которая может служить заголовком, автоматически сжимается, а кнопка-поплавок исчезает.</p>
+<p>
+<br> Этот шаблон включает в себя:
+<br> Свертывающуюся панель инструментов
+<br> FloatingActionButton - кнопка-поплавок
+<br> Два макета: один для activity (операция в терминологии android) и один для текстового содержимого NestedScrollView.
+</p>
+<p>
+<br> Ознакомьтесь с информацией о <a href=https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout>CoordinatorLayout</a>
+  и <a href=https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior>CoordinatorLayout.Behavior</a>
+<br> Пример кода этого приложения смотрите <a href=https://github.com/yard01/android_cheatsheet>здесь</a>
+</p>
         </html>
         ]]>
     </string>

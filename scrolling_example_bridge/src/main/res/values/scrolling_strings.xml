@@ -8,7 +8,16 @@
             <p> The example demonstrates the scrolling of a NestedScrollView. </p>
             <p> When scrolling text, NestedScrollView translates its behavior to the AppBar, with the property</p>
             <p><b>app:layout_behavior="@string/appbar_scrolling_view_behavior"</b> </p>
-            <a href=https://developer.android.com/guide/navigation/navigation-ui>ссылка</a>
+            <p> This template creates an app with a collapsing toolbar and a scrolling view for long text content. As you scroll down the page, the toolbar, which can serve as a header, automatically condenses, and the floating action button disappears.
+<p>
+<br>This template includes:
+<br>    Collapsing toolbar in place of the regular AppBar
+<br>    FloatingActionButton
+<br>    Two layout files: one for the activity and one to separate out the text content into a NestedScrollView
+<p>
+<br>    See indormation about <a href=https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout>CoordinatorLayout</a>
+ and <a href=https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior>CoordinatorLayout.Behavior</a>
+<br> This example code see <a href=https://github.com/yard01/android_cheatsheet>here</a>
             </html>
             ]]>
 

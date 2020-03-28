@@ -5,10 +5,11 @@
     <string name="fabfilter_app_description">
             <![CDATA[
             <html>
-            <p> The example demonstrates the scrolling of a NestedScrollView. </p>
-            <p> When scrolling text, NestedScrollView translates its behavior to the AppBar, with the property</p>
-            <p><b>app:layout_behavior="@string/appbar_scrolling_view_behavior"</b> </p>
-            <a href=https://developer.android.com/guide/navigation/navigation-ui>ссылка</a>
+            <p>Проект Fab Filter. Крутейший пример работы со скроллингом, раскрывающимися списками и панелью навигации. </p>
+            <p>Всё плавно двигается, анимируется. Автор проекта - Nikhil Panju.</p>
+            <p>Подробное описание от автора <a href=https://proandroiddev.com/complex-ui-animation-on-android-8f7a46f4aec4>здесь</a></p>
+            <p><b></b></p>
+            <a href=https://github.com/nikhilpanju/FabFilter>Исходники проекта</a>
             </html>
             ]]>
 
