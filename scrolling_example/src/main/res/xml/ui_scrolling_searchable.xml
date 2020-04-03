@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="@string/UI_SCROLLING_app_name"
+    android:hint="@string/UI_SCROLLING_search_hint">
+
+</searchable>

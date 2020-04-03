@@ -1,5 +1,8 @@
-<?xml version="1.0" ?><resources>
+<?xml version="1.0" ?>
+<resources>
     <string name="UI_SCROLLING_app_name">Scrolling Example</string>
+    <string name="UI_SCROLLING_search_title">Search</string>
+    <string name="UI_SCROLLING_search_hint">Search Hint</string>
     <string name="UI_SCROLLING_large_text">
         &quot;Material is the metaphor.\n\n&quot;
 
