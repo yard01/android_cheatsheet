@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.cheatsheet_content.view.*
 import java.util.concurrent.Executors
 
 class CheatSheetFragment: Fragment() {
+    public var searchQuery = "";
+
     companion object {
         val ROW_BUFFER_SIZE= 5;
 
@@ -97,4 +99,5 @@ class CheatSheetFragment: Fragment() {
         super.onDetach()
 
     }
+
 }

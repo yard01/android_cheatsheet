@@ -7,7 +7,9 @@ import io.reactivex.Observable
 class CheatSheetViewModel {
     companion object {
         //debug! must delete
-        var exampleRows: Array<CheatSheetExampleRow> = emptyArray()
+        var filter = ""; // string
+        var exampleRows: Array<CheatSheetExampleRow> = emptyArray() //the array of example rows
+        //each row is a set of examples
 
         var page: CheetSheetPage = CheetSheetPage()
         var rows: Observable<PagedList<CheatSheetExampleRow>>? = null

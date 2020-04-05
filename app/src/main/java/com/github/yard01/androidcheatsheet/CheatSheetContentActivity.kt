@@ -27,11 +27,9 @@ class CheatSheetContentActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(
             R.id.cheatsheet_container,
             fragment
-
         ).commit()
 
         //FragmentManager
-
         /*
         setSupportActionBar(toolbar)
         fab.setOnClickListener { view ->
@@ -39,4 +37,7 @@ class CheatSheetContentActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }*/
     }
+
+    //private fun
+
 }
