@@ -34,7 +34,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/cheatsheet_content" />
-
  <!--   <include layout="@layout/content_cheat_sheet_content" /> -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

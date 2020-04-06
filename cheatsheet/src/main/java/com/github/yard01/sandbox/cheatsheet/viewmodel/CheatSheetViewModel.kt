@@ -8,6 +8,7 @@ class CheatSheetViewModel {
     companion object {
         //debug! must delete
         var filter = ""; // string
+        var search = "р";
         var exampleRows: Array<CheatSheetExampleRow> = emptyArray() //the array of example rows
         //each row is a set of examples
 

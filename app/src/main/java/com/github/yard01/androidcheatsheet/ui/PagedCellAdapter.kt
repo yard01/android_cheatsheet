@@ -1,5 +1,6 @@
 package com.github.yard01.androidcheatsheet.ui
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.yard01.androidcheatsheet.CheatSheetContentActivity
 import com.github.yard01.androidcheatsheet.R
+import com.github.yard01.androidcheatsheet.ui.richtext.RichText
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
+import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import kotlinx.android.synthetic.main.example_cell.view.*
 
 class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCell>) :
@@ -21,7 +24,6 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
         val BUFFER_SIZE = 4
         fun clickCell(view: View, cell: CheatSheetExampleCell) {
             val page: ExamplePageFragment = ExamplePageFragment(cell)
-
             //view.context.
             (view.context as FragmentActivity).supportFragmentManager
                 .beginTransaction()
@@ -51,13 +53,16 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
     override fun onBindViewHolder(holder: CellViewHolder, position: Int) {
         val cell = this.getItem(position)
         if (cell != null) {
-            holder.icon.setImageResource(cell.bridge.getIconId()) // .setImageDrawable(cell?.bridge?.getIcon())
-            holder.icon.setBackgroundResource(cell.bridge.getIconBackgroundId())
+            if (cell.bridge.getIconId() != -1)
+                holder.icon.setImageResource(cell.bridge.getIconId()) // .setImageDrawable(cell?.bridge?.getIcon())
+
+            if (cell.bridge.getIconBackgroundId() != -1)
+                holder.icon.setBackgroundResource(cell.bridge.getIconBackgroundId())
             //holder.icon.setImageDrawable(cell.bridge.getIcon())
             //holder.icon.background = cell.bridge.getIconBackground()
 
                     //holder.icon.setBa
-            holder.info.text = cell?.bridge?.getName()
+            holder.info.text = RichText.highlightText(cell?.bridge?.getName(), CheatSheetViewModel.search, Color.YELLOW)
             holder.itemView.setOnClickListener { view -> clickCell(view, cell) }
         }
     }

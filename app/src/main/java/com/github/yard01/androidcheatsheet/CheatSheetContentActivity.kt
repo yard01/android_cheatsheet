@@ -1,10 +1,11 @@
 package com.github.yard01.androidcheatsheet
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import com.github.yard01.androidcheatsheet.ui.CheatSheetFragment
 import com.github.yard01.sandbox.cheatsheet.CheatSheetProvider
+import kotlinx.android.synthetic.main.cheatsheet_fragment.*
 
 class CheatSheetContentActivity : AppCompatActivity() {
     companion object {
@@ -18,7 +19,7 @@ class CheatSheetContentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cheatsheet_content)
         savedInstanceState?.getString(PROVIDER_ID_PARAMETER)
-
+        setSupportActionBar(toolbar)
         provider = MainActivity.currentFactory?.createProvider()
         var fragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TAG)
 
@@ -37,7 +38,11 @@ class CheatSheetContentActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }*/
     }
-
-    //private fun
+    /*
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate activity menu items.
+        menuInflater.inflate(R.menu.menu_cheat_sheet_content, menu)
+        return super.onCreateOptionsMenu(menu)
+    }*/
 
 }

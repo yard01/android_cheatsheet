@@ -14,7 +14,7 @@ class UICheatSheetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val result: View = inflater.inflate(R.layout.uicheatsheet_fragment, container, false)
+        val result: View = inflater.inflate(R.layout.uicheatsheet_fragment /*fragment*/, container, false)
         return result
     }
 }
