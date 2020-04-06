@@ -5,6 +5,7 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.github.yard01.androidcheatsheet.ui.CheatSheetFragment
 import com.github.yard01.sandbox.cheatsheet.CheatSheetProvider
+import kotlinx.android.synthetic.main.activity_cheatsheet_content.*
 import kotlinx.android.synthetic.main.cheatsheet_fragment.*
 
 class CheatSheetContentActivity : AppCompatActivity() {
@@ -38,11 +39,11 @@ class CheatSheetContentActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }*/
     }
-    /*
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate activity menu items.
         menuInflater.inflate(R.menu.menu_cheat_sheet_content, menu)
         return super.onCreateOptionsMenu(menu)
-    }*/
+    }
 
 }

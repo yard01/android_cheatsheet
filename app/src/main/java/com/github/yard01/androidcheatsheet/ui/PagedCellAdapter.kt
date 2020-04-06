@@ -27,7 +27,7 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
             //view.context.
             (view.context as FragmentActivity).supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.cheatsheet_container, page, CheatSheetContentActivity.FRAGMENT_TAG)
+                .replace(/*R.id.main_container*/R.id.cheatsheet_container, page, CheatSheetContentActivity.FRAGMENT_TAG)
                 .addToBackStack(null)
                 .commit()
             //Log.d("celladapder", ""+(view.context as FragmentActivity).supportFragmentManager)

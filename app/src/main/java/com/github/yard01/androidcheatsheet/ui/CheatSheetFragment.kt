@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
+import com.github.yard01.androidcheatsheet.CheatSheetContentActivity
 import com.github.yard01.androidcheatsheet.MainActivity
 import com.github.yard01.androidcheatsheet.R
 import com.github.yard01.sandbox.cheatsheet.MainThreadExecutor
@@ -14,6 +15,7 @@ import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.cheatsheet_content.view.*
+import kotlinx.android.synthetic.main.cheatsheet_fragment.*
 import java.util.concurrent.Executors
 
 class CheatSheetFragment: Fragment() {
@@ -67,7 +69,7 @@ class CheatSheetFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
+        val result: View = inflater.inflate(R.layout.cheatsheet_content /*_fragment*/, container, false)
 
         val adapter = PagedRowAdapter(RowDiffUtilCallbak())
 
@@ -90,17 +92,17 @@ class CheatSheetFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true);
+       // setHasOptionsMenu(true);
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_cheat_sheet_content, menu);
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        super.onCreateOptionsMenu(menu, inflater)
+//        inflater.inflate(R.menu.menu_cheat_sheet_content, menu);
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return super.onOptionsItemSelected(item)
+//    }
 
     override fun onDetach() {
         super.onDetach()
