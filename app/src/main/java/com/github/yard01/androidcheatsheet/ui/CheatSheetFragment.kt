@@ -1,6 +1,9 @@
 package com.github.yard01.androidcheatsheet.ui
 
+import android.app.SearchManager
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.paging.DataSource
@@ -69,11 +72,11 @@ class CheatSheetFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val result: View = inflater.inflate(R.layout.cheatsheet_content /*_fragment*/, container, false)
+        val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
 
         val adapter = PagedRowAdapter(RowDiffUtilCallbak())
 
-        //setSupportActionBar(toolbar)
+        (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
 
         var provider = MainActivity.currentFactory?.createProvider()
         provider?.provide()
@@ -84,9 +87,10 @@ class CheatSheetFragment: Fragment() {
             MainThreadExecutor())
 
         Observable.just(pagedList).subscribe(adapter::submitList)
-        //CheatSheetViewModel.rows?.subscribe(adapter::submitList)
         result.examplerow_list.adapter = adapter
-        //setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
+        handleIntent(this.activity?.intent)
+
         return result
     }
 
@@ -95,18 +99,28 @@ class CheatSheetFragment: Fragment() {
        // setHasOptionsMenu(true);
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu_cheat_sheet_content, menu);
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return super.onOptionsItemSelected(item)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_cheat_sheet_content, menu);
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onDetach() {
         super.onDetach()
 
+    }
+
+    private fun handleIntent(intent: Intent?) {
+        if (intent == null) return;
+        if (Intent.ACTION_SEARCH == intent.action) {
+            val query = intent.getStringExtra(SearchManager.QUERY)
+            Log.d("searchquery", query)
+
+            //use the query to search your data somehow
+        }
     }
 
 }

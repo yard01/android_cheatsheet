@@ -20,30 +20,14 @@ class CheatSheetContentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cheatsheet_content)
         savedInstanceState?.getString(PROVIDER_ID_PARAMETER)
-        setSupportActionBar(toolbar)
         provider = MainActivity.currentFactory?.createProvider()
         var fragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TAG)
-
         if (fragment == null) fragment = CheatSheetFragment()
-
         supportFragmentManager.beginTransaction().replace(
             R.id.cheatsheet_container,
             fragment
         ).commit()
 
-        //FragmentManager
-        /*
-        setSupportActionBar(toolbar)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }*/
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate activity menu items.
-        menuInflater.inflate(R.menu.menu_cheat_sheet_content, menu)
-        return super.onCreateOptionsMenu(menu)
     }
 
 }
