@@ -1,10 +1,13 @@
 package com.github.yard01.androidcheatsheet.ui
 
 import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.paging.DataSource
 import androidx.paging.PagedList
@@ -72,6 +75,7 @@ class CheatSheetFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        handleIntent(this.activity?.intent)
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
 
         val adapter = PagedRowAdapter(RowDiffUtilCallbak())
@@ -89,7 +93,7 @@ class CheatSheetFragment: Fragment() {
         Observable.just(pagedList).subscribe(adapter::submitList)
         result.examplerow_list.adapter = adapter
         setHasOptionsMenu(true);
-        handleIntent(this.activity?.intent)
+
 
         return result
     }
@@ -102,6 +106,12 @@ class CheatSheetFragment: Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_cheat_sheet_content, menu);
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu.findItem(R.id.search).actionView as SearchView).apply {
+
+            setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -117,7 +127,8 @@ class CheatSheetFragment: Fragment() {
         if (intent == null) return;
         if (Intent.ACTION_SEARCH == intent.action) {
             val query = intent.getStringExtra(SearchManager.QUERY)
-            Log.d("searchquery", query)
+            CheatSheetViewModel.search = query
+            //Log.d("searchquery", query)
 
             //use the query to search your data somehow
         }

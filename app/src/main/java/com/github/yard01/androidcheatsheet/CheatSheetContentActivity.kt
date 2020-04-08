@@ -1,5 +1,6 @@
 package com.github.yard01.androidcheatsheet
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,10 @@ class CheatSheetContentActivity : AppCompatActivity() {
             fragment
         ).commit()
 
+    }
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        //handleIntent(intent)
     }
 
 }

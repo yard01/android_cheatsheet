@@ -2,5 +2,6 @@
 <resources>
     <string name="app_name">Шпаргалка по Android</string>
     <string name="example_run_button">Запустить</string>
+    <string name="search_hint">Искать в названии</string>
 
 </resources>
