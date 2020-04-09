@@ -69,6 +69,41 @@ class CheatSheetFragment: Fragment() {
 
     }
 
+    inner class SearchClose(): SearchView.OnCloseListener {
+        override fun onClose(): Boolean {
+            Log.d("searchclose", "close" )
+            return true
+        }
+    }
+
+    inner class TextListener(): SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(p0: String?): Boolean {
+            Log.d("searchsub", "" + p0 )
+            return true
+        }
+
+        override fun onQueryTextChange(p0: String?): Boolean {
+            Log.d("searchchan", "" + p0 )
+            return true
+        }
+
+    }
+
+    inner class Suggest(): SearchView.OnSuggestionListener {
+        override fun onSuggestionSelect(p0: Int): Boolean {
+            Log.d("searchsgg", "" + p0 )
+            return true
+
+        }
+
+        override fun onSuggestionClick(p0: Int): Boolean {
+            Log.d("searchcl", "" + p0 )
+            return true
+
+        }
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -93,8 +128,6 @@ class CheatSheetFragment: Fragment() {
         Observable.just(pagedList).subscribe(adapter::submitList)
         result.examplerow_list.adapter = adapter
         setHasOptionsMenu(true);
-
-
         return result
     }
 
@@ -108,8 +141,12 @@ class CheatSheetFragment: Fragment() {
         inflater.inflate(R.menu.menu_cheat_sheet_content, menu);
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         (menu.findItem(R.id.search).actionView as SearchView).apply {
-
             setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+            this.setQuery(CheatSheetViewModel.search, false)
+            this.setOnCloseListener(SearchClose())
+            this.setOnQueryTextListener(TextListener())
+            //this.setOnSuggestionListener(Suggest())
+            //this.setOnSuggestionListener() //.setOnQueryTextListener()
         }
 
     }
@@ -133,5 +170,9 @@ class CheatSheetFragment: Fragment() {
             //use the query to search your data somehow
         }
     }
+
+}
+
+private fun SearchView.setOnCloseListener(function: () -> Unit) {
 
 }
