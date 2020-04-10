@@ -69,41 +69,6 @@ class CheatSheetFragment: Fragment() {
 
     }
 
-    inner class SearchClose(): SearchView.OnCloseListener {
-        override fun onClose(): Boolean {
-            Log.d("searchclose", "close" )
-            return true
-        }
-    }
-
-    inner class TextListener(): SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(p0: String?): Boolean {
-            Log.d("searchsub", "" + p0 )
-            return true
-        }
-
-        override fun onQueryTextChange(p0: String?): Boolean {
-            Log.d("searchchan", "" + p0 )
-            return true
-        }
-
-    }
-
-    inner class Suggest(): SearchView.OnSuggestionListener {
-        override fun onSuggestionSelect(p0: Int): Boolean {
-            Log.d("searchsgg", "" + p0 )
-            return true
-
-        }
-
-        override fun onSuggestionClick(p0: Int): Boolean {
-            Log.d("searchcl", "" + p0 )
-            return true
-
-        }
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -128,6 +93,7 @@ class CheatSheetFragment: Fragment() {
         Observable.just(pagedList).subscribe(adapter::submitList)
         result.examplerow_list.adapter = adapter
         setHasOptionsMenu(true);
+        result.setOnFocusChangeListener { view, b -> run {Log.d("search", "fragment focus")} }
         return result
     }
 
@@ -142,9 +108,21 @@ class CheatSheetFragment: Fragment() {
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         (menu.findItem(R.id.search).actionView as SearchView).apply {
             setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
-            this.setQuery(CheatSheetViewModel.search, false)
-            this.setOnCloseListener(SearchClose())
-            this.setOnQueryTextListener(TextListener())
+            //this.setQuery(CheatSheetViewModel.search, false)
+            //this.setOnCloseListener(SearchClose())
+            //this.setOnQueryTextListener(TextListener())
+            //this.setOnSearchClickListener {v -> run { Log.d("searchclick", " click! ") } }
+            
+            this.setOnQueryTextFocusChangeListener {view, focus  -> run {
+                    if (!focus && "".equals((view as SearchView).query.toString()) ) {
+                        CheatSheetViewModel.search = ""
+                        (view as SearchView).setQuery(CheatSheetViewModel.search, true)
+                    }
+                    else
+                        (view as SearchView).setQuery(CheatSheetViewModel.search, false)
+                    //Log.d("searchfocus", " " + v + " : " + b + " : " + (v as SearchView).query)
+                }
+            }
             //this.setOnSuggestionListener(Suggest())
             //this.setOnSuggestionListener() //.setOnQueryTextListener()
         }

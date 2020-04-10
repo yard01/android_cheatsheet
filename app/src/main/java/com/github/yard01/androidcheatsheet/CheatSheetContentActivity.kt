@@ -2,6 +2,7 @@ package com.github.yard01.androidcheatsheet
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.github.yard01.androidcheatsheet.ui.CheatSheetFragment
@@ -32,6 +33,7 @@ class CheatSheetContentActivity : AppCompatActivity() {
     }
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        Log.d("search", "newintent")
         //handleIntent(intent)
     }
 
