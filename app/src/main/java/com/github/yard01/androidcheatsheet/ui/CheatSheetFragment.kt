@@ -112,7 +112,7 @@ class CheatSheetFragment: Fragment() {
             //this.setOnCloseListener(SearchClose())
             //this.setOnQueryTextListener(TextListener())
             //this.setOnSearchClickListener {v -> run { Log.d("searchclick", " click! ") } }
-            
+
             this.setOnQueryTextFocusChangeListener {view, focus  -> run {
                     if (!focus && "".equals((view as SearchView).query.toString()) ) {
                         CheatSheetViewModel.search = ""
