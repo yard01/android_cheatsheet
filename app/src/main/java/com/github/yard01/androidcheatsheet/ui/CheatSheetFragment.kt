@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.SearchView
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
@@ -69,6 +70,8 @@ class CheatSheetFragment: Fragment() {
 
     }
 
+    val adapter = PagedRowAdapter(RowDiffUtilCallbak())
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,7 +81,6 @@ class CheatSheetFragment: Fragment() {
         handleIntent(this.activity?.intent)
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
 
-        val adapter = PagedRowAdapter(RowDiffUtilCallbak())
 
         (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
 
@@ -90,8 +92,10 @@ class CheatSheetFragment: Fragment() {
             Executors.newSingleThreadExecutor(),
             MainThreadExecutor())
 
+
         Observable.just(pagedList).subscribe(adapter::submitList)
         result.examplerow_list.adapter = adapter
+
         setHasOptionsMenu(true);
         result.setOnFocusChangeListener { view, b -> run {Log.d("search", "fragment focus")} }
         return result
@@ -113,16 +117,23 @@ class CheatSheetFragment: Fragment() {
             //this.setOnQueryTextListener(TextListener())
             //this.setOnSearchClickListener {v -> run { Log.d("searchclick", " click! ") } }
 
+            //val closeButton: ImageView? = this.findViewById(R.id.search_close_btn)
+            //this.
+            //closeButton?.setOnClickListener { button -> run {Log.d("searchclose", "search close click!")} }
+
             this.setOnQueryTextFocusChangeListener {view, focus  -> run {
                     if (!focus && "".equals((view as SearchView).query.toString()) ) {
                         CheatSheetViewModel.search = ""
                         (view as SearchView).setQuery(CheatSheetViewModel.search, true)
+                        adapter.notifyDataSetChanged()
                     }
                     else
                         (view as SearchView).setQuery(CheatSheetViewModel.search, false)
                     //Log.d("searchfocus", " " + v + " : " + b + " : " + (v as SearchView).query)
                 }
             }
+
+
             //this.setOnSuggestionListener(Suggest())
             //this.setOnSuggestionListener() //.setOnQueryTextListener()
         }

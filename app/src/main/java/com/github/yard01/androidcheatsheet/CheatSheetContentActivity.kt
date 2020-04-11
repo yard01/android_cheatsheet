@@ -31,10 +31,4 @@ class CheatSheetContentActivity : AppCompatActivity() {
         ).commit()
 
     }
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        Log.d("search", "newintent")
-        //handleIntent(intent)
-    }
-
 }
