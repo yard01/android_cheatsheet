@@ -6,7 +6,6 @@ import io.reactivex.Observable
 
 class CheatSheetViewModel {
     companion object {
-        //debug! must delete
         var filter = ""; // string
         var search = "";
         var exampleRows: Array<CheatSheetExampleRow> = emptyArray() //the array of example rows

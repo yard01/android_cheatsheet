@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <EditTextPreference
-        app:key="cheatsheet_text_filter"
-        app:title="@string/filter_by_name" />
+        app:key="@string/cheatsheet_text_filter_Key"
+        app:title="@string/filter_by_name"
+        />
 </PreferenceScreen>

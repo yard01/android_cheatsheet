@@ -29,6 +29,5 @@ class CheatSheetContentActivity : AppCompatActivity() {
             R.id.cheatsheet_container,
             fragment
         ).commit()
-
     }
 }

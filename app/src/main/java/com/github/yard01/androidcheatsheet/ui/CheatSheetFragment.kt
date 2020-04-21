@@ -6,9 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
 import android.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.paging.DataSource
 import androidx.paging.PagedList
@@ -22,7 +20,7 @@ import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.cheatsheet_content.view.*
-import kotlinx.android.synthetic.main.cheatsheet_fragment.*
+import kotlinx.android.synthetic.main.cheatsheet_fragment.view.*
 import java.util.concurrent.Executors
 
 class CheatSheetFragment: Fragment() {
@@ -98,6 +96,17 @@ class CheatSheetFragment: Fragment() {
 
         setHasOptionsMenu(true);
         result.setOnFocusChangeListener { view, b -> run {Log.d("search", "fragment focus")} }
+        result.preferences_FAB.setOnClickListener { fab -> run {
+            val preferencesFragment = PreferencesFragment()
+
+            //show preferences
+            (activity as CheatSheetContentActivity).getSupportFragmentManager().beginTransaction() //
+                .replace(
+                    R.id.cheatsheet_container,
+                    preferencesFragment
+                ).addToBackStack(null)
+                .commit()
+        } }
         return result
     }
 
