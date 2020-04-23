@@ -27,7 +27,7 @@ class CheatSheetContentActivity : AppCompatActivity() {
         if (fragment == null) fragment = CheatSheetFragment()
         supportFragmentManager.beginTransaction().replace(
             R.id.cheatsheet_container,
-            fragment
+            fragment, FRAGMENT_TAG
         ).commit()
     }
 }

@@ -18,6 +18,7 @@ import com.github.yard01.sandbox.cheatsheet.MainThreadExecutor
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.cheatsheet_content.view.*
 import kotlinx.android.synthetic.main.cheatsheet_fragment.view.*
@@ -69,6 +70,7 @@ class CheatSheetFragment: Fragment() {
     }
 
     val adapter = PagedRowAdapter(RowDiffUtilCallbak())
+    var fab: FloatingActionButton? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,7 +80,7 @@ class CheatSheetFragment: Fragment() {
         // Inflate the layout for this fragment
         handleIntent(this.activity?.intent)
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
-
+        fab = result.preferences_FAB
 
         (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
 
@@ -90,29 +92,41 @@ class CheatSheetFragment: Fragment() {
             Executors.newSingleThreadExecutor(),
             MainThreadExecutor())
 
-
         Observable.just(pagedList).subscribe(adapter::submitList)
         result.examplerow_list.adapter = adapter
 
         setHasOptionsMenu(true);
         result.setOnFocusChangeListener { view, b -> run {Log.d("search", "fragment focus")} }
-        result.preferences_FAB.setOnClickListener { fab -> run {
-            val preferencesFragment = PreferencesFragment()
 
-            //show preferences
-            (activity as CheatSheetContentActivity).getSupportFragmentManager().beginTransaction() //
-                .replace(
-                    R.id.cheatsheet_container,
-                    preferencesFragment
-                ).addToBackStack(null)
-                .commit()
+        fab?.setOnClickListener { button -> run {
+            CheatSheetViewModel.search = ""
+            CheatSheetViewModel.filter = ""
+            button.visibility = View.INVISIBLE
+            adapter.notifyDataSetChanged()
+//            val preferencesFragment = PreferencesFragment()
+//            //show preferences
+//            (activity as CheatSheetContentActivity).getSupportFragmentManager().beginTransaction() //
+//                .replace(
+//                    R.id.cheatsheet_container,
+//                    preferencesFragment
+//                ).addToBackStack(null)
+//                .commit()
         } }
+        hideFab()
+        //Log.d("createview", "create view")
         return result
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // setHasOptionsMenu(true);
+    }
+
+    private fun hideFab() {
+        if ("".equals(CheatSheetViewModel.search) && "".equals(CheatSheetViewModel.filter))
+            fab?.visibility = View.INVISIBLE
+        else
+            fab?.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -123,7 +137,7 @@ class CheatSheetFragment: Fragment() {
             setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
             //this.setQuery(CheatSheetViewModel.search, false)
             //this.setOnCloseListener(SearchClose())
-            //this.setOnQueryTextListener(TextListener())
+            //this.setOnQueryTextListener(SearchView.onQu)
             //this.setOnSearchClickListener {v -> run { Log.d("searchclick", " click! ") } }
 
             //val closeButton: ImageView? = this.findViewById(R.id.search_close_btn)
@@ -134,22 +148,35 @@ class CheatSheetFragment: Fragment() {
                     if (!focus && "".equals((view as SearchView).query.toString()) ) {
                         CheatSheetViewModel.search = ""
                         (view as SearchView).setQuery(CheatSheetViewModel.search, true)
+                        hideFab()
                         adapter.notifyDataSetChanged()
                     }
                     else
                         (view as SearchView).setQuery(CheatSheetViewModel.search, false)
                     //Log.d("searchfocus", " " + v + " : " + b + " : " + (v as SearchView).query)
+
                 }
             }
 
-
-            //this.setOnSuggestionListener(Suggest())
-            //this.setOnSuggestionListener() //.setOnQueryTextListener()
         }
 
     }
 
+
+    private fun openPreferences() {
+        val preferencesFragment = PreferencesFragment()
+        //show preferences
+        (activity as CheatSheetContentActivity).getSupportFragmentManager().beginTransaction() //
+            .replace(
+                R.id.cheatsheet_container,
+                preferencesFragment
+            ).addToBackStack(null)
+            .commit()
+    }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_settings) openPreferences()
         return super.onOptionsItemSelected(item)
     }
 
@@ -163,9 +190,6 @@ class CheatSheetFragment: Fragment() {
         if (Intent.ACTION_SEARCH == intent.action) {
             val query = intent.getStringExtra(SearchManager.QUERY)
             CheatSheetViewModel.search = query
-            //Log.d("searchquery", query)
-
-            //use the query to search your data somehow
         }
     }
 
