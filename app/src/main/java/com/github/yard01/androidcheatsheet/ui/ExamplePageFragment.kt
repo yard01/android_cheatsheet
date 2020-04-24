@@ -1,20 +1,24 @@
 package com.github.yard01.androidcheatsheet.ui
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.text.Html
+import android.text.*
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.text.toSpannable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.yard01.androidcheatsheet.R
+import com.github.yard01.androidcheatsheet.ui.richtext.RichText
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
 import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleCell
+import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import com.github.yard01.sandbox.cheatsheet.viewmodel.ScreenshotProvider
 import kotlinx.android.synthetic.main.example_page_fragment.view.*
 import kotlinx.android.synthetic.main.screenshot.view.*
@@ -72,21 +76,24 @@ class ExamplePageFragment(val cell: CheatSheetExampleCell): Fragment() {
         val result: View = inflater.inflate(R.layout.example_page_fragment, container, false)
         val runButton: Button = result.run_example_Button// .findViewById(R.id.run_example_Button)
         runButton.text = this.getString(R.string.example_run_button)
-
+        var html: Spanned? = null
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-            result.example_description_TextView.text = Html.fromHtml(
+            html = Html.fromHtml(
                 this.cell.bridge.getDescription(),
                 Html.FROM_HTML_MODE_COMPACT)
          else
-            result.example_description_TextView.text = Html.fromHtml(
+            html = Html.fromHtml(
                 this.cell.bridge.getDescription()
             )
+        result.example_description_TextView.text = RichText.highlightText(SpannableString(html), CheatSheetViewModel.search, Color.YELLOW)
+
+        //RichText.highlightText(cell?.bridge?.getName(), CheatSheetViewModel.search, Color.YELLOW)
+
         result.example_description_TextView.movementMethod = LinkMovementMethod.getInstance()
 
         runButton.setOnClickListener { view -> clickRun(view) }
 
-        val layoutManager =
-            LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         val screensotRecyclerView = result.screenshot_list_RecyclerView
         screensotRecyclerView.layoutManager = layoutManager
         if (this.cell != null)

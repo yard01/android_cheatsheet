@@ -10,6 +10,8 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.paging.DataSource
 import androidx.paging.PagedList
+import androidx.paging.PagedListAdapter
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DiffUtil
 import com.github.yard01.androidcheatsheet.CheatSheetContentActivity
 import com.github.yard01.androidcheatsheet.MainActivity
@@ -35,7 +37,7 @@ class CheatSheetFragment: Fragment() {
     }
 
 
-    class RowDiffUtilCallbak: DiffUtil.ItemCallback<CheatSheetExampleRow>() {
+    class RowDiffUtilCallback: DiffUtil.ItemCallback<CheatSheetExampleRow>() {
         override fun areItemsTheSame(//сравнивает идентификаторы строк
             oldItem: CheatSheetExampleRow,
             newItem: CheatSheetExampleRow
@@ -52,7 +54,7 @@ class CheatSheetFragment: Fragment() {
 
     }
 
-    class CellDiffUtilCallbak: DiffUtil.ItemCallback<CheatSheetExampleCell>() {
+    class CellDiffUtilCallback: DiffUtil.ItemCallback<CheatSheetExampleCell>() {
         override fun areItemsTheSame(//сравнивает идентификаторы строк
             oldItem: CheatSheetExampleCell,
             newItem: CheatSheetExampleCell
@@ -69,8 +71,23 @@ class CheatSheetFragment: Fragment() {
 
     }
 
-    val adapter = PagedRowAdapter(RowDiffUtilCallbak())
+    var adapter: PagedRowAdapter? = null //PagedRowAdapter(RowDiffUtilCallback())
     var fab: FloatingActionButton? = null
+
+
+    private fun createExampleList(view: View) {
+        var provider = MainActivity.currentFactory?.createProvider()
+        provider?.provide()
+
+        adapter = PagedRowAdapter(RowDiffUtilCallback())
+        val pagedList: PagedList<CheatSheetExampleRow> = PagedList(CheatSheetViewModel.contentDataSource as DataSource<Int, CheatSheetExampleRow>,
+            paggingConfig,
+            Executors.newSingleThreadExecutor(),
+            MainThreadExecutor())
+        Observable.just(pagedList).subscribe(adapter!!::submitList)
+        view.examplerow_list.adapter = adapter
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,42 +95,30 @@ class CheatSheetFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        handleIntent(this.activity?.intent)
+        handleIntent(this.activity?.intent) //Search
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
-        fab = result.preferences_FAB
-
         (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
-
-        var provider = MainActivity.currentFactory?.createProvider()
-        provider?.provide()
-
-        val pagedList: PagedList<CheatSheetExampleRow> = PagedList(CheatSheetViewModel.contentDataSource as DataSource<Int, CheatSheetExampleRow>,
-            paggingConfig,
-            Executors.newSingleThreadExecutor(),
-            MainThreadExecutor())
-
-        Observable.just(pagedList).subscribe(adapter::submitList)
-        result.examplerow_list.adapter = adapter
-
         setHasOptionsMenu(true);
-        result.setOnFocusChangeListener { view, b -> run {Log.d("search", "fragment focus")} }
+
+        fab = result.preferences_FAB
+        createExampleList(result)
+        hideFab()
 
         fab?.setOnClickListener { button -> run {
             CheatSheetViewModel.search = ""
             CheatSheetViewModel.filter = ""
+
+            PreferenceManager
+                .getDefaultSharedPreferences(this.activity)
+                .edit()
+                .remove(this.getString(R.string.cheatsheet_text_filter_Key))
+                .commit()
+
             button.visibility = View.INVISIBLE
-            adapter.notifyDataSetChanged()
-//            val preferencesFragment = PreferencesFragment()
-//            //show preferences
-//            (activity as CheatSheetContentActivity).getSupportFragmentManager().beginTransaction() //
-//                .replace(
-//                    R.id.cheatsheet_container,
-//                    preferencesFragment
-//                ).addToBackStack(null)
-//                .commit()
+            //CheatSheetViewModel.contentDataSource?.invalidate()
+            createExampleList(result)
         } }
-        hideFab()
-        //Log.d("createview", "create view")
+
         return result
     }
 
@@ -135,26 +140,15 @@ class CheatSheetFragment: Fragment() {
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         (menu.findItem(R.id.search).actionView as SearchView).apply {
             setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
-            //this.setQuery(CheatSheetViewModel.search, false)
-            //this.setOnCloseListener(SearchClose())
-            //this.setOnQueryTextListener(SearchView.onQu)
-            //this.setOnSearchClickListener {v -> run { Log.d("searchclick", " click! ") } }
-
-            //val closeButton: ImageView? = this.findViewById(R.id.search_close_btn)
-            //this.
-            //closeButton?.setOnClickListener { button -> run {Log.d("searchclose", "search close click!")} }
-
             this.setOnQueryTextFocusChangeListener {view, focus  -> run {
                     if (!focus && "".equals((view as SearchView).query.toString()) ) {
                         CheatSheetViewModel.search = ""
                         (view as SearchView).setQuery(CheatSheetViewModel.search, true)
                         hideFab()
-                        adapter.notifyDataSetChanged()
+                        adapter?.notifyDataSetChanged()
                     }
                     else
                         (view as SearchView).setQuery(CheatSheetViewModel.search, false)
-                    //Log.d("searchfocus", " " + v + " : " + b + " : " + (v as SearchView).query)
-
                 }
             }
 

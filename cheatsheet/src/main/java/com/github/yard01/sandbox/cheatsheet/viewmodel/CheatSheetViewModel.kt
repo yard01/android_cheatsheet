@@ -5,6 +5,7 @@ import com.github.yard01.sandbox.cheatsheet.CheetSheetPage
 import io.reactivex.Observable
 
 class CheatSheetViewModel {
+
     companion object {
         var filter = ""; // string
         var search = "";
@@ -20,4 +21,6 @@ class CheatSheetViewModel {
         }
 //        var exampleStorage
     }
+
+
 }

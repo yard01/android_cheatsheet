@@ -2,6 +2,7 @@ package com.github.yard01.androidcheatsheet
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.yard01.androidcheatsheet.ui.CheatSheetFragment
 import com.github.yard01.sandbox.cheatsheet.CheatSheetProviderFactory
+import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
 import com.github.yard01.sandbox.cheatsheetregister.CheatSheetRegister
 import kotlinx.android.synthetic.main.cheatsheet_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
@@ -20,20 +23,23 @@ class MainActivity : AppCompatActivity() {
     //var items: Array<String>
 
     var factories: Array<CheatSheetProviderFactory> = arrayOf()
+    var preferences: SharedPreferences? = null
     init {
+
         //items = arrayOfNulls<>()
         //    resources.getStringArray(R.array.cheatsheet_list)
 
     }
+
     companion object {
         var currentFactory : CheatSheetProviderFactory? = null
+
     }
 
     private fun createContent() {
         val factoryNames = resources.getStringArray(R.array.cheatsheet_list)
         factories =  Array(factoryNames.size, {i-> CheatSheetRegister.getProviderFactory(this, factoryNames[i])})
         this.cheatsheet_list.adapter = CheatSheetItemAdapter()
-
     }
 
     private fun clickItem(view: View) {
@@ -61,6 +67,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        CheatSheetViewModel.filter = "" + preferences?.getString(this.getString(R.string.cheatsheet_text_filter_Key), "")
         setContentView(R.layout.cheatsheet_list)
         createContent()
     }

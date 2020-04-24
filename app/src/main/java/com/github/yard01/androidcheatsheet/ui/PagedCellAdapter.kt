@@ -61,7 +61,6 @@ class PagedCellAdapter (diffCallback: DiffUtil.ItemCallback<CheatSheetExampleCel
             //holder.icon.setImageDrawable(cell.bridge.getIcon())
             //holder.icon.background = cell.bridge.getIconBackground()
 
-                    //holder.icon.setBa
             holder.info.text = RichText.highlightText(cell?.bridge?.getName(), CheatSheetViewModel.search, Color.YELLOW)
             holder.itemView.setOnClickListener { view -> clickCell(view, cell) }
         }

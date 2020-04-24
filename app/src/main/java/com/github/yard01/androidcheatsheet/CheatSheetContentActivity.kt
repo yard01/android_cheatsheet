@@ -21,13 +21,17 @@ class CheatSheetContentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cheatsheet_content)
-        savedInstanceState?.getString(PROVIDER_ID_PARAMETER)
+
         provider = MainActivity.currentFactory?.createProvider()
-        var fragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TAG)
-        if (fragment == null) fragment = CheatSheetFragment()
-        supportFragmentManager.beginTransaction().replace(
-            R.id.cheatsheet_container,
-            fragment, FRAGMENT_TAG
-        ).commit()
+
+        var fragment = this.supportFragmentManager.findFragmentByTag(FRAGMENT_TAG)
+
+        if (fragment == null) {
+            fragment = CheatSheetFragment()
+            supportFragmentManager.beginTransaction().replace(
+                R.id.cheatsheet_container,
+                fragment, FRAGMENT_TAG
+            ).commit()
+        }
     }
 }

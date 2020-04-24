@@ -44,7 +44,7 @@ class PagedRowAdapter(diffCallback: DiffUtil.ItemCallback<CheatSheetExampleRow>)
     override fun onBindViewHolder(holder: RowViewHolder, position: Int) {
         val row = this.getItem(position)
         holder.titleTextView.text = row?.title  //holder.itemView.context.getString(CheatSheetViewModel.exampleRows[position].titleId)
-        val adapter = PagedCellAdapter(CheatSheetFragment.CellDiffUtilCallbak())
+        val adapter = PagedCellAdapter(CheatSheetFragment.CellDiffUtilCallback())
 
 
         val pagedList: PagedList<CheatSheetExampleCell> = PagedList(row?.cellSource as DataSource<Int, CheatSheetExampleCell>,
