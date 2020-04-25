@@ -169,7 +169,7 @@ class CheatSheetFragment: Fragment() {
                 }
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     hideKeyboard()
-                    return true 
+                    return true
                 }
 
                 override fun onQueryTextChange(query: String?): Boolean {
