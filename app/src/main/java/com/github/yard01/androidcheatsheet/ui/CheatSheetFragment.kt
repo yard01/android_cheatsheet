@@ -1,16 +1,15 @@
 package com.github.yard01.androidcheatsheet.ui
 
+import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.paging.DataSource
 import androidx.paging.PagedList
-import androidx.paging.PagedListAdapter
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DiffUtil
 import com.github.yard01.androidcheatsheet.CheatSheetContentActivity
@@ -95,7 +94,7 @@ class CheatSheetFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        handleIntent(this.activity?.intent) //Search
+        //handleIntent(this.activity?.intent) //Search
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
         (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
         setHasOptionsMenu(true);
@@ -105,9 +104,8 @@ class CheatSheetFragment: Fragment() {
         hideFab()
 
         fab?.setOnClickListener { button -> run {
-            CheatSheetViewModel.search = ""
             CheatSheetViewModel.filter = ""
-
+            CheatSheetViewModel.search = ""
             PreferenceManager
                 .getDefaultSharedPreferences(this.activity)
                 .edit()
@@ -128,10 +126,19 @@ class CheatSheetFragment: Fragment() {
     }
 
     private fun hideFab() {
-        if ("".equals(CheatSheetViewModel.search) && "".equals(CheatSheetViewModel.filter))
+        if ("".equals(CheatSheetViewModel.filter))
             fab?.visibility = View.INVISIBLE
         else
             fab?.visibility = View.VISIBLE
+    }
+
+    private fun hideKeyboard() {
+        val imm: InputMethodManager = this.activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        var view = this.activity?.currentFocus
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) view = View(this.activity)
+
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -151,6 +158,25 @@ class CheatSheetFragment: Fragment() {
                         (view as SearchView).setQuery(CheatSheetViewModel.search, false)
                 }
             }
+            this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                private fun searchText(query: String?): Boolean {
+                    if (query != null) {
+                        CheatSheetViewModel.search = query
+                        adapter?.notifyDataSetChanged()
+                        return true
+                    }
+                    return false
+                }
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    hideKeyboard()
+                    return true 
+                }
+
+                override fun onQueryTextChange(query: String?): Boolean {
+                    return searchText(query)
+                }
+            })
+
 
         }
 
@@ -178,7 +204,7 @@ class CheatSheetFragment: Fragment() {
         super.onDetach()
 
     }
-
+/*
     private fun handleIntent(intent: Intent?) {
         if (intent == null) return;
         if (Intent.ACTION_SEARCH == intent.action) {
@@ -186,7 +212,7 @@ class CheatSheetFragment: Fragment() {
             CheatSheetViewModel.search = query
         }
     }
-
+*/
 }
 
 private fun SearchView.setOnCloseListener(function: () -> Unit) {

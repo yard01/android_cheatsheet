@@ -14,9 +14,11 @@
             android:name=".CheatSheetContentActivity"
             android:label="@string/title_activity_cheat_sheet_content"
             android:theme="@style/AppTheme.NoActionBar" >
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
+            </intent-filter>-->
+
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/cheatsheet_searchable" />
 
