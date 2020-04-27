@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="ui_examples">
+        <item>Шаблоны Android Studio</item>
+        <item>Списки</item>
+        <item>Виджеты</item>
+        <item>Анимация</item>
+    </array>
+
+</resources>
