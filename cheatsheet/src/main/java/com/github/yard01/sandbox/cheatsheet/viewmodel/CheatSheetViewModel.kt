@@ -16,7 +16,7 @@ class CheatSheetViewModel {
         var rows: Observable<PagedList<CheatSheetExampleRow>>? = null
         var contentDataSource: ContentDataSource? = null
 
-        fun setContentStorage(storage: com.github.yard01.sandbox.sensor_cheatsheet.SensorCheatSheetStorage) {
+        fun setContentStorage(storage: ContentStorage) {
             contentDataSource = ContentDataSource(storage)
         }
 //        var exampleStorage

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <string name="sensor_cheatsheet_app_name">UI Cheat Sheet</string>
+        <string name="sensor_cheatsheet_app_name">Sensor Cheat Sheet</string>
         <string name="sensor_content">
         {rows:[
             {id:0,
-                bridges:[com.github.yard01.sandbox.navigator_example_bridge.NavigatorExampleBridge,
-                         com.github.yard01.cheatsheet.scrolling_example_bridge.ScrollingExampleBridge]
+                bridges:[com.github.yard01.sensor_example_bridges.SensorListExampleBridge]
             }
 
             ]

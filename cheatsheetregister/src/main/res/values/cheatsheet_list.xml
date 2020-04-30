@@ -4,5 +4,8 @@
         <item>
             com.github.yard01.sandbox.ui_cheatsheet.UICheatSheetProviderFactory
         </item>
+        <item>
+            com.github.yard01.sandbox.sensor_cheatsheet.SensorCheatSheetProviderFactory
+        </item>
     </array>
 </resources>
