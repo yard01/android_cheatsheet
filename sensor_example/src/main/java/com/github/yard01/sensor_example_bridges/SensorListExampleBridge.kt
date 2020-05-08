@@ -37,12 +37,11 @@ class SensorListExampleBridge (var context: Context): ExampleBridge, IconProvide
 
     override fun getScreenshotCount(): Int {
      //   TODO("Not yet implemented")
-        return 0
+        return 1
     }
 
     override fun getScreenshotId(index: Int): Int {
-    //    TODO("Not yet implemented")
-        return -1
+        return R.drawable.sensorlist_screenshot_0
     }
 
 }

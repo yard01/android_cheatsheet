@@ -5,6 +5,7 @@
             <![CDATA[
             <html>
             <p>Пример выводит список датчиков, доступных на устройстве</p>
+            <p><a href=https://github.com/yard01/android_cheatsheet/tree/master/sensor_example>Исходники</a></p>
             </html>
             ]]>
 
