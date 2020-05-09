@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="integration_cheatsheet_app_name">Integration Cheat Sheet</string>
+        <string name="integration_content">
+        {rows:[
+            {id:0,
+                bridges:[com.github.yard01.sensor_example_bridges.SensorListExampleBridge]
+            }
+
+            ]
+        }
+
+    </string>
+
+</resources>

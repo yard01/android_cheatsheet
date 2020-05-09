@@ -1,30 +1,21 @@
-package com.github.yard01.sandbox.ui_cheatsheet
+package com.github.yard01.sandbox.cheatsheet.viewmodel
 
 import android.content.Context
 import android.os.Build
 import android.text.Html
 import androidx.annotation.RequiresApi
-
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
-import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetExampleRow
-import com.github.yard01.sandbox.cheatsheet.viewmodel.CheatSheetViewModel
-import com.github.yard01.sandbox.cheatsheet.viewmodel.ContentStorage
-
 import org.json.JSONObject
 
-class UICheatSheetStorage(var context: Context): ContentStorage {
-    var headers: Array<String> = emptyArray();
-    val jsonContent: JSONObject
+class JSONContentStorage(val context: Context,
+                         val headers: Array<String>,
+                         val jsonContent: JSONObject
+): ContentStorage {
+
     companion object {
         private val JSON_ID = "id"
         private val JSON_ROWS = "rows"
         private val JSON_BRIDGES = "bridges"
-    }
-    init {
-        headers = context.resources.getStringArray(R.array.ui_examples)
-        jsonContent = JSONObject(context.getString(R.string.ui_content))
-        //Log.d("rows", " " + jsonContent.getJSONArray("rows").length())
-        //context.resources
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -54,8 +45,8 @@ class UICheatSheetStorage(var context: Context): ContentStorage {
                         var description = ""
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
                             description = Html.fromHtml(exampleBridge.getDescription(), Html.FROM_HTML_MODE_COMPACT).toString()
-                             else
-                                description = Html.fromHtml(exampleBridge.getDescription()).toString()
+                        else
+                            description = Html.fromHtml(exampleBridge.getDescription()).toString()
 
 
                         if (description.indexOf(CheatSheetViewModel.filter) >=0)
