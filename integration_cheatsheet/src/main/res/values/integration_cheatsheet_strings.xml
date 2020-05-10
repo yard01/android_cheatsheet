@@ -4,7 +4,7 @@
         <string name="integration_content">
         {rows:[
             {id:0,
-                bridges:[com.github.yard01.sensor_example_bridges.SensorListExampleBridge]
+                bridges:[com.github.yard01.integration_example_bridges.SendSimpleFileExampleBridge]
             }
 
             ]

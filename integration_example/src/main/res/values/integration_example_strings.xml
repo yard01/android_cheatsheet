@@ -1,0 +1,13 @@
+<resources>
+    <string name="send_simple_file_name">Send Simple File</string>
+    <string name="send_simple_file_description">
+            <![CDATA[
+            <html>
+            <p> The example demonstrates the simple file sending. </p>
+            https://github.com/yard01/android_cheatsheet/tree/master/integration_example
+            <p><a href=https://github.com/yard01/android_cheatsheet/tree/master/integration_example>Source Code</a></p>
+            </html>
+            ]]>
+
+    </string>
+</resources>
