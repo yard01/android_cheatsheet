@@ -1,5 +1,10 @@
 <resources>
     <string name="send_simple_file_name">Send Simple File</string>
+    <string name="send_simple_file_name_TXT">Send .txt file</string>
+    <string name="send_simple_file_name_JPEG">Send .jpeg file</string>
+    <string name="send_simple_file_name_PDF">Send .pdf file</string>
+    <string name="send_simple_file_name_ZIP">Send .zip archive</string>
+
     <string name="send_simple_file_description">
             <![CDATA[
             <html>

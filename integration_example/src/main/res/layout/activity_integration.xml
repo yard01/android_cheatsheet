@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.github.yard01.integration_example.IntegrationActivity">
 
+    <LinearLayout
+        android:id="@+id/integration_example_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
