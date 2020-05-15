@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    //!!! It isn't works here! It works only in app: build.gradle
+    //aaptOptions {
+    //    noCompress '.json' , '.txt', '.pdf'
+    //}
 
 }
 

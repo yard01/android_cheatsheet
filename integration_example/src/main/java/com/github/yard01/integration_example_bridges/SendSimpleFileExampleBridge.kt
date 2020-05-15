@@ -3,6 +3,7 @@ package com.github.yard01.integration_example_bridges
 import android.content.Context
 import android.content.Intent
 import com.github.yard01.integration_example.IntegrationActivity
+import com.github.yard01.integration_example.R
 import com.github.yard01.integration_example.SendSimpleFileFragment
 import com.github.yard01.sandbox.cheatsheet.ExampleBridge
 import com.github.yard01.sandbox.cheatsheet.viewmodel.IconProvider
