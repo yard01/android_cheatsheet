@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.paging.DataSource
 import androidx.paging.PagedList
@@ -96,7 +97,9 @@ class CheatSheetFragment: Fragment() {
         // Inflate the layout for this fragment
         //handleIntent(this.activity?.intent) //Search
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
-        (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
+        if (activity is CheatSheetContentActivity)
+            (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
+
         setHasOptionsMenu(true);
 
         fab = result.preferences_FAB
@@ -186,7 +189,7 @@ class CheatSheetFragment: Fragment() {
     private fun openPreferences() {
         val preferencesFragment = PreferencesFragment()
         //show preferences
-        (activity as CheatSheetContentActivity).getSupportFragmentManager().beginTransaction() //
+        (activity as AppCompatActivity).getSupportFragmentManager().beginTransaction() //
             .replace(
                 R.id.cheatsheet_container,
                 preferencesFragment

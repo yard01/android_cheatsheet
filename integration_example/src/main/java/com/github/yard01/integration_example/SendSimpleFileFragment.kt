@@ -50,7 +50,7 @@ class SendSimpleFileFragment: Fragment() {
                 }
                 inp.close()
                 out.close()
-                
+
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_STREAM, fileUri)
