@@ -55,8 +55,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.cheatsheet_container,
                 fragment//provider!!.fragment
             ).commit()
-
-
         } else {
             val intent = Intent(this, CheatSheetContentActivity::class.java).apply {
                 putExtra(CheatSheetContentActivity.PROVIDER_ID_PARAMETER, currentFactory?.providerClassName)

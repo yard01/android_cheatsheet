@@ -5,13 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    >
+   >
+    <!-- android:fitsSystemWindows="true"-->
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
+
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -35,7 +37,8 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/cheatsheet_content" />
- <!--   <include layout="@layout/content_cheat_sheet_content" /> -->
+
+    <!--   <include layout="@layout/content_cheat_sheet_content" /> -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/preferences_FAB"

@@ -97,8 +97,10 @@ class CheatSheetFragment: Fragment() {
         // Inflate the layout for this fragment
         //handleIntent(this.activity?.intent) //Search
         val result: View = inflater.inflate(R.layout.cheatsheet_fragment, container, false)
-        if (activity is CheatSheetContentActivity)
+
+        if (activity is CheatSheetContentActivity) {
             (activity as CheatSheetContentActivity).setSupportActionBar(result.findViewById(R.id.toolbar))
+        }
 
         setHasOptionsMenu(true);
 
