@@ -39,8 +39,8 @@
         android:text="@string/send_simple_file_name_PDF" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/sendZIP_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/send_simple_file_name_ZIP" />
 </LinearLayout>
