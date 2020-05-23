@@ -8,7 +8,9 @@ import android.net.Uri
 import com.github.yard01.integration_example.IntegrationActivity
 import java.io.FileNotFoundException
 import java.io.IOException
-
+/*
+For sending from ASSETS
+ */
 class AssetFileProvider : ContentProvider() {
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {

@@ -35,7 +35,6 @@ class SendSimpleFileFragment: Fragment() {
             } while (bytesRead != -1)
             inp.close()
         }
-        zos.closeEntry()
 
     }
 
@@ -49,6 +48,8 @@ class SendSimpleFileFragment: Fragment() {
         compressStream(context.assets?.open("jpeg/portrait.jpeg"), zos)
         zos.putNextEntry(ZipEntry("file.pdf"))
         compressStream(context.assets?.open("pdf/send_pdf.pdf"), zos)
+        zos.closeEntry()
+        zos.close()
         fos.close()
         return zipFileName
     }
@@ -66,7 +67,7 @@ class SendSimpleFileFragment: Fragment() {
 
         view.sendJPEG_Button.setOnClickListener{button -> run {
 
-            Log.d( "cheatfile", "avail: " + view.context.assets?.open("jpeg/portrait.jpeg")?.available())
+            //Log.d( "cheatfile", "avail: " + view.context.assets?.open("jpeg/portrait.jpeg")?.available())
             val inp = Channels.newChannel(view.context.assets?.open("jpeg/portrait.jpeg"))
 
             //-- получается файл в 5 Мб!!!

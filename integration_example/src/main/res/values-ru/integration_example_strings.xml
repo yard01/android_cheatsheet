@@ -2,8 +2,8 @@
 <resources>
     <string name="send_simple_file_name">Отправка простого файла</string>
     <string name="send_simple_file_name_TXT">Отправить текст</string>
-    <string name="send_simple_file_name_JPEG">Отправить .jpeg файл</string>
-    <string name="send_simple_file_name_PDF">Отправить .pdf файл</string>
-    <string name="send_simple_file_name_ZIP">Отправить .zip файл</string>
+    <string name="send_simple_file_name_JPEG">Отправить .jpeg файл из кэша</string>
+    <string name="send_simple_file_name_PDF">Отправить .pdf файл из assets</string>
+    <string name="send_simple_file_name_ZIP">Отправить .zip файл из кэша</string>
 
 </resources>
