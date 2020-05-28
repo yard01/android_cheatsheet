@@ -3,13 +3,30 @@
     package="com.github.yard01.integration_example">
 
     <application>
+        <activity android:name=".SimpleDataReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+
         <provider
             android:name=".providers.AssetFileProvider"
             android:authorities="integration_example_share_asset_file"
             android:enabled="true"
             android:exported="true"
-            android:grantUriPermissions="true"
-            ></provider>
+            android:grantUriPermissions="true" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.github.yard01.integration_example.fileprovider"
@@ -20,7 +37,7 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
-        <activity android:name=".IntegrationActivity" />
+        <activity android:name=".IntegrationActivity"></activity>
     </application>
 
 </manifest>
