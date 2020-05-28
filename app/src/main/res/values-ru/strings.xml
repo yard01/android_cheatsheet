@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Шпаргалка по Android</string>
+    <string name="app_name">Шпаргалка разработчика</string>
     <string name="example_run_button">Запустить</string>
     <string name="search_hint">Искать в названии</string>
     <string name="title_activity_cheat_sheet_content">Шпаргалка</string>

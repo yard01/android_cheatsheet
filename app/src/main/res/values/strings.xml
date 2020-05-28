@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Cheat Sheet</string>
+    <string name="app_name">Developer Cheat Sheet</string>
     <string name="title_activity_cheat_sheet_content">Cheat sheet</string>
     <string name="example_run_button">Run</string>
     <string name="action_settings">Settings</string>

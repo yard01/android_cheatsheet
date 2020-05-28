@@ -16,11 +16,11 @@ class FabfilterExampleBridge(val context: Context): ExampleBridge, IconProvider,
     }
 
     override fun getIconId(): Int {
-       return R.drawable.ui_fabfilter_icon
+       return R.drawable.ui_fabfilter_icon_2
     }
 
     override fun getIconBackgroundId(): Int {
-        return R.drawable.ui_fabfilter_icon
+        return R.drawable.ui_fabfilter_icon_2
     }
 
     override fun getName(): String {
