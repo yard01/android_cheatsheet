@@ -1,0 +1,13 @@
+<resources>
+    <string name="sensorlist_example_name">Sensor List</string>
+    <string name="sensorlist_description">
+            <![CDATA[
+            <html>
+            <p> The example demonstrates the list of sensors. </p>
+            https://github.com/yard01/android_cheatsheet/tree/master/sensor_example
+            <p><a href=https://github.com/yard01/android_cheatsheet/tree/master/sensor_example>Source Code</a></p>
+            </html>
+            ]]>
+
+    </string>
+</resources>

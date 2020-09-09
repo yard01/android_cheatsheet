@@ -1,24 +1,20 @@
 package com.github.yard01.integration_example
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_data_receiver.*
 import kotlinx.android.synthetic.main.recived_picture.view.*
 import java.io.InputStream
-
 
 class SimpleDataReceiver : AppCompatActivity() {
 
