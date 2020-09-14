@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_cheatsheet_app_name">Maps and GPS</string>
+    <string name="map_content" translatable="false">
+    {rows:[
+    {id:0,
+    bridges:[com.github.yard01.map_example_bridges.GoogleMapBridge]
+    }
+
+    ]
+    }
+    </string>
+</resources>

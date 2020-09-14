@@ -32,6 +32,7 @@ dependencies {
     implementation project (':ui_cheatsheet')
     implementation project (':sensor_cheatsheet')
     implementation project (':integration_cheatsheet')
+    implementation project (':map_cheatsheet')
     implementation project (':cheatsheet')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

@@ -10,5 +10,9 @@
         <item>
             com.github.yard01.sandbox.integration_cheatsheet.IntegrationCheatSheetProviderFactory
         </item>
+        <item>
+            com.github.yard01.sandbox.map_cheatsheet.MapCheatsheetProviderFactory
+        </item>
+
     </array>
 </resources>

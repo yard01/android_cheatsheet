@@ -18,7 +18,5 @@ class SensorActivity : AppCompatActivity() {
             .replace(R.id.sensor_example_container, exampleFragment)
             .commit()
 
-        //Log.d("bundle",  ""+this.intent.getStringExtra(FRAGMENT_CLASSNAME))
-
     }
 }
