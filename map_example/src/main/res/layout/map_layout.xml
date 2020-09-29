@@ -2,9 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map_frame_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  >
+    android:layout_height="match_parent">
 
     <fragment
         android:id="@+id/map"
@@ -22,6 +22,6 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="48dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_mylocation"
-        android:focusable="true" />
+        android:focusable="true"
+        app:srcCompat="@android:drawable/ic_menu_mylocation" />
 </FrameLayout>

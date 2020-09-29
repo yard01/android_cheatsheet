@@ -22,7 +22,7 @@ class GoogleMapBridge (var context: Context) : ExampleBridge, IconProvider, Scre
         context.startActivity(intent)
     }
 
-    override fun getIconId(): Int = -1
+    override fun getIconId(): Int = R.drawable.template_map_activity
 
 
     override fun getIconBackgroundId(): Int = -1
