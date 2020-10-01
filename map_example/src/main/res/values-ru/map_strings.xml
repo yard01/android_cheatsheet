@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="map_example">Пример карты</string>
+    <string name="need_location_permission">Нужно разрешить доступ к геолокации...</string>
+    <string name="open_location_settings_quest">Геолокация выключена.\nОткрыть настройки геолокации?</string>
 </resources>

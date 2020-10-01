@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="map_example">Map Example</string>
+    <string name="need_location_permission">To determine the location on the map,\nyou must give access to geolocation</string>
+    <string name="open_location_settings_quest">Geolocation is disabled.\nOpen geolocation settings?</string>
+
 </resources>
