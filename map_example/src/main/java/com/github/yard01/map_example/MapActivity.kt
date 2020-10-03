@@ -10,15 +10,13 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
@@ -27,10 +25,17 @@ import kotlinx.android.synthetic.main.map_layout.*
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var locationManager: LocationManager
+    private  lateinit var progressBar: ProgressBar
 
     private var locationListener = object: LocationListener {
-        override fun onLocationChanged(p0: Location?) {
-
+        override fun onLocationChanged(location: Location?) {
+            Log.d("loch", "On Changed")
+            progressBar.visibility = ProgressBar.INVISIBLE
+            if (location != null) {
+                val latLng = LatLng(location.latitude, location.longitude)
+                mMap.addMarker(MarkerOptions().position(latLng).title("Your Location Marker"))
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+            }
         }
 
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
@@ -42,7 +47,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         override fun onProviderDisabled(p0: String?) {
-
+            progressBar.visibility = ProgressBar.INVISIBLE
         }
     }
 
@@ -85,25 +90,26 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
 
-        var location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-        if (location != null) return location else location = locationManager.getLastKnownLocation(
-            LocationManager.NETWORK_PROVIDER
-        )
-        if (location != null) return location else location = locationManager.getLastKnownLocation(
-            LocationManager.PASSIVE_PROVIDER
-        )
+        //var location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        //if (location != null) return location else location = locationManager.getLastKnownLocation(
+        //    LocationManager.NETWORK_PROVIDER
+        //)
+        //if (location != null) return location else location = locationManager.getLastKnownLocation(
+        //    LocationManager.PASSIVE_PROVIDER
+        //)
 
-        if (location == null) {
-            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) locationManager.requestSingleUpdate(
+        //if (location == null) {
+        progressBar.visibility = ProgressBar.VISIBLE
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) locationManager.requestSingleUpdate(
                 LocationManager.GPS_PROVIDER,
                 locationListener,
                 Looper.getMainLooper()
-            ) else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) locationManager.requestSingleUpdate(
+        ) else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) locationManager.requestSingleUpdate(
                 LocationManager.NETWORK_PROVIDER,
                 locationListener,
                 Looper.getMainLooper()
-            )
-        }
+        )
+        //}
         return null
     }
 
@@ -173,6 +179,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.map_layout)
+        progressBar = this.map_progressBar
         locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -184,9 +191,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 //    "https://.com",
                 //    Snackbar.LENGTH_LONG
                 //).show()
-                val sydney = LatLng(-34.0, 151.0)
-                mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+                //val sydney = LatLng(-34.0, 151.0)
+                //mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+                //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
             }
         }
 
@@ -194,8 +201,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        
+        mMap.uiSettings.isZoomControlsEnabled = true
     }
 }
