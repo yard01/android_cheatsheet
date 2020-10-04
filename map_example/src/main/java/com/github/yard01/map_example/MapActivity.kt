@@ -3,6 +3,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -11,6 +12,7 @@ import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -21,20 +23,29 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.map_layout.*
+import java.util.*
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var locationManager: LocationManager
-    private  lateinit var progressBar: ProgressBar
+    private lateinit var progressBar: ProgressBar
+    private lateinit var geocoder: Geocoder
 
     private var locationListener = object: LocationListener {
         override fun onLocationChanged(location: Location?) {
             Log.d("loch", "On Changed")
             progressBar.visibility = ProgressBar.INVISIBLE
             if (location != null) {
+                var addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+
+               addrList.forEach {
+                   Toast.makeText(this@MapActivity,"${it.countryName}, ${it.locality}", Toast.LENGTH_SHORT).show()
+                   //Log.d("addr", "${it.countryName}, ${it.locality}")
+               }
                 val latLng = LatLng(location.latitude, location.longitude)
-                mMap.addMarker(MarkerOptions().position(latLng).title("Your Location Marker"))
+                mMap.addMarker(MarkerOptions().position(latLng).title("Your Location ${location.latitude.toString()}, ${location.longitude}"))
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
             }
         }
 
@@ -180,6 +191,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.map_layout)
         progressBar = this.map_progressBar
+        geocoder = Geocoder(this, Locale.getDefault())
         locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
