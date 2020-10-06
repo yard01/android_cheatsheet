@@ -16,11 +16,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
-import com.google.android.gms.maps.*
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.net.FetchPlaceRequest
+import com.google.android.libraries.places.api.net.FetchPlaceResponse
+import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
+import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.map_layout.*
 import java.util.*
@@ -39,13 +48,71 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 var addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
                addrList.forEach {
-                   Toast.makeText(this@MapActivity,"${it.countryName}, ${it.locality}", Toast.LENGTH_SHORT).show()
+                   Toast.makeText(
+                       this@MapActivity,
+                       "${it.countryName}, ${it.locality}",
+                       Toast.LENGTH_SHORT
+                   ).show()
                    //Log.d("addr", "${it.countryName}, ${it.locality}")
                }
                 val latLng = LatLng(location.latitude, location.longitude)
-                mMap.addMarker(MarkerOptions().position(latLng).title("Your Location ${location.latitude.toString()}, ${location.longitude}"))
+                mMap.addMarker(
+                    MarkerOptions().position(latLng)
+                        .title("Your Location ${location.latitude.toString()}, ${location.longitude}")
+                )
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
                 addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+
+                //Places
+                Places.initialize(
+                    this@MapActivity,
+                    this@MapActivity.getString(R.string.google_map_api_key)
+                )
+
+                // Create a new PlacesClient instance
+                val placesClient = Places.createClient(this@MapActivity)
+
+                if (ActivityCompat.checkSelfPermission(
+                        this@MapActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return
+                }
+                // Define a Place ID.
+                val placeId = "INSERT_PLACE_ID_HERE"
+
+// Specify the fields to return.
+                val placeFields = listOf(Place.Field.ID, Place.Field.NAME)
+
+// Construct a request object, passing the place ID and fields array.
+                val request = FetchPlaceRequest.newInstance(placeId, placeFields)
+                //val placeFields = Arrays.asList(
+                //    Place.Field.NAME,
+                //    Place.Field.RATING,
+                //    Place.Field.PHOTO_METADATAS
+                //)
+                val p: Place? = null
+                //placesClient.fetchPlace(request)
+                placesClient.findCurrentPlace(FindCurrentPlaceRequest.newInstance(placeFields)).addOnSuccessListener {
+                        response: FindCurrentPlaceResponse ->
+                    val place = response.placeLikelihoods
+
+                    Log.i("place", "Place found: ${place[0].place.name} , ${place[0].place.id}")
+                }.addOnFailureListener { exception: Exception ->
+                    if (exception is ApiException) {
+                        Log.e("place", "Place not found: ${exception.message}")
+                        val statusCode = exception.statusCode
+                        //TODO("Handle error with given status code")
+                    }
+                }
             }
         }
 
@@ -112,13 +179,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         //if (location == null) {
         progressBar.visibility = ProgressBar.VISIBLE
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) locationManager.requestSingleUpdate(
-                LocationManager.GPS_PROVIDER,
-                locationListener,
-                Looper.getMainLooper()
+            LocationManager.GPS_PROVIDER,
+            locationListener,
+            Looper.getMainLooper()
         ) else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) locationManager.requestSingleUpdate(
-                LocationManager.NETWORK_PROVIDER,
-                locationListener,
-                Looper.getMainLooper()
+            LocationManager.NETWORK_PROVIDER,
+            locationListener,
+            Looper.getMainLooper()
         )
         //}
         return null
@@ -168,7 +235,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 this.map_frame_layout,
                 this.getString(R.string.need_location_permission),
                 Snackbar.LENGTH_LONG
-            ).addCallback(object: Snackbar.Callback() {
+            ).addCallback(object : Snackbar.Callback() {
                 override fun onDismissed(snackbar: Snackbar, event: Int) {
 
                     requestPermissionDialog()
@@ -214,5 +281,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.uiSettings.isZoomControlsEnabled = true
+        //Places.initialize( this@MapActivity, this@MapActivity.getString(R.string.google_map_api_key), true)
+        //mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
     }
 }
