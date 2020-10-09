@@ -22,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
@@ -40,12 +41,30 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var progressBar: ProgressBar
     private lateinit var geocoder: Geocoder
 
+    private fun markOnMap(location: Location, color: Float = BitmapDescriptorFactory.HUE_RED) {
+        if (!this::mMap.isInitialized) return
+        val latLng = LatLng(location.latitude, location.longitude)
+
+        mMap.addMarker(
+            MarkerOptions()
+                .position(latLng)
+                .icon(BitmapDescriptorFactory.defaultMarker(color))
+                .title("${location.provider}: ${location.latitude.toString()}, ${location.longitude}")
+        )
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+
+    }
+
     private var locationListener = object: LocationListener {
         override fun onLocationChanged(location: Location?) {
+            locationManager.removeUpdates(this)
+
+            if (!this@MapActivity::mMap.isInitialized) return
             Log.d("loch", "On Changed")
             progressBar.visibility = ProgressBar.INVISIBLE
             if (location != null) {
-                var addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                markOnMap(location)
+                /*var addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
                addrList.forEach {
                    Toast.makeText(
@@ -55,12 +74,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                    ).show()
                    //Log.d("addr", "${it.countryName}, ${it.locality}")
                }
-                val latLng = LatLng(location.latitude, location.longitude)
-                mMap.addMarker(
-                    MarkerOptions().position(latLng)
-                        .title("Your Location ${location.latitude.toString()}, ${location.longitude}")
-                )
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+
+
                 addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
                 //Places
@@ -112,20 +127,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                         val statusCode = exception.statusCode
                         //TODO("Handle error with given status code")
                     }
-                }
+                }*/
             }
         }
 
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-
+            Log.d("loch", "On Status Changed")
         }
 
         override fun onProviderEnabled(p0: String?) {
-
+            Log.d("loch", "On Provider Enabled")
         }
 
         override fun onProviderDisabled(p0: String?) {
             progressBar.visibility = ProgressBar.INVISIBLE
+            Log.d("loch", "On Provider Disabled")
         }
     }
 
@@ -146,7 +162,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-    fun getEnabledLocation(): Location? {
+    fun getEnabledLocation() {
 
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -164,11 +180,19 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             requestLocationPermission()
-            return null
+            return
 
         }
 
-        //var location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        var location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        if (location != null) markOnMap(location, BitmapDescriptorFactory.HUE_AZURE)
+        
+        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        if (location != null) markOnMap(location, BitmapDescriptorFactory.HUE_GREEN)
+
+        location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
+        if (location != null) markOnMap(location, BitmapDescriptorFactory.HUE_ORANGE)
+
         //if (location != null) return location else location = locationManager.getLastKnownLocation(
         //    LocationManager.NETWORK_PROVIDER
         //)
@@ -178,17 +202,29 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //if (location == null) {
         progressBar.visibility = ProgressBar.VISIBLE
+        /*
+        locationManager.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            0,
+            0f,
+            locationListener,
+            Looper.getMainLooper()
+        )*/
+
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) locationManager.requestSingleUpdate(
             LocationManager.GPS_PROVIDER,
             locationListener,
             Looper.getMainLooper()
+
         ) else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) locationManager.requestSingleUpdate(
             LocationManager.NETWORK_PROVIDER,
             locationListener,
             Looper.getMainLooper()
         )
+
+
         //}
-        return null
+
     }
 
     fun forceRequestLocation() {
