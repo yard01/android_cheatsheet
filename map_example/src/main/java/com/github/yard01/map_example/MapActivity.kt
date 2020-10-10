@@ -1,5 +1,6 @@
 package com.github.yard01.map_example
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -56,6 +57,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private var locationListener = object: LocationListener {
+        @SuppressLint("MissingPermission")
         override fun onLocationChanged(location: Location?) {
             locationManager.removeUpdates(this)
 
@@ -64,12 +66,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             progressBar.visibility = ProgressBar.INVISIBLE
             if (location != null) {
                 markOnMap(location)
-                /*var addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                
+                var addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
-               addrList.forEach {
+                addrList.forEach {
                    Toast.makeText(
                        this@MapActivity,
-                       "${it.countryName}, ${it.locality}",
+                       "${it.countryName}, ${it.locality}, ${it.adminArea}",
                        Toast.LENGTH_SHORT
                    ).show()
                    //Log.d("addr", "${it.countryName}, ${it.locality}")
@@ -86,7 +89,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 // Create a new PlacesClient instance
                 val placesClient = Places.createClient(this@MapActivity)
-
+                /*
                 if (ActivityCompat.checkSelfPermission(
                         this@MapActivity,
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -102,6 +105,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     return
                 }
                 // Define a Place ID.
+
+                 */
                 val placeId = "INSERT_PLACE_ID_HERE"
 
 // Specify the fields to return.
@@ -127,7 +132,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                         val statusCode = exception.statusCode
                         //TODO("Handle error with given status code")
                     }
-                }*/
+                }
             }
         }
 
@@ -192,6 +197,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
         if (location != null) markOnMap(location, BitmapDescriptorFactory.HUE_ORANGE)
+
 
         //if (location != null) return location else location = locationManager.getLastKnownLocation(
         //    LocationManager.NETWORK_PROVIDER
