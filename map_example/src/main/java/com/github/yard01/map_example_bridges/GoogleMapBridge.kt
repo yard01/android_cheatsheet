@@ -24,17 +24,20 @@ class GoogleMapBridge (var context: Context) : ExampleBridge, IconProvider, Scre
 
     override fun getIconId(): Int = R.drawable.template_map_activity
 
-
     override fun getIconBackgroundId(): Int = -1
 
     override fun getName(): String = context.getString(R.string.map_example)
 
     override fun getDescription(): String = context.getString(R.string.map_example)
 
+    override fun getScreenshotCount(): Int = 4
 
-    override fun getScreenshotCount(): Int = 0
-
-
-    override fun getScreenshotId(index: Int): Int =-1
-
+    override fun getScreenshotId(index: Int): Int =
+        when (index) {
+             0 -> R.drawable.map_screenshot_0
+             1 -> R.drawable.map_screenshot_1
+             2 -> R.drawable.map_screenshot_2
+             3 -> R.drawable.map_screenshot_3
+             else -> -1
+        }
 }

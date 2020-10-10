@@ -66,7 +66,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             progressBar.visibility = ProgressBar.INVISIBLE
             if (location != null) {
                 markOnMap(location)
-                
+
                 var addrList = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
                 addrList.forEach {
