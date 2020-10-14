@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_gravity="center"
+        android:id="@+id/image_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/radio_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/radio_scroll_nothing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="No" />
+        <RadioButton android:id="@+id/radio_spring_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spring" />
+        <RadioButton android:id="@+id/radio_scroll_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scroll" />
+        <RadioButton android:id="@+id/radio_fling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fling" />
+        <RadioButton android:id="@+id/radio_fling_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Over" />
+    </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_gravity="center"
+        android:id="@+id/size_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:text="Adjust View Bounds"
+        android:layout_gravity="center"
+        android:id="@+id/adjustviewbounds_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_gravity="center"
+        android:id="@+id/scale_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:text="Matrix Based"
+        android:layout_gravity="center"
+        android:id="@+id/matrixbased_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_gravity="center"
+        android:id="@+id/matrix_based_scale_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_matrix_explore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="explore matrix" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_matrix_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="page turn scale" />
+
+</LinearLayout>

@@ -1,3 +1,4 @@
+include ':scaletype_example'
 include ':maptest'
 include ':app', ':ui_cheatsheet', ':cheatsheet', ':cheatsheetregister', ':detail_example', ':navigator_example', ':navigator_example_bridge', ':scrollexample', ':fabfilter_example'
 rootProject.name='Android Cheat Sheet'
