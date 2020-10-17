@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="scaletype_app_name">Пример Scaletype</string>
+    <string name="scaletype_bridge_app_name">Повороты и масштабирование картинки</string>
 </resources>

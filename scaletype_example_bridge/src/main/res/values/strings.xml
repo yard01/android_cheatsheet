@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="scaletype_app_name">Scaletype Example</string>
+    <string name="scaletype_bridge_app_name">Scale and rotate an image</string>
 </resources>

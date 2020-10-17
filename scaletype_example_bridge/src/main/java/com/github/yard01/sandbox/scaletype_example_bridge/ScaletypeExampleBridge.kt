@@ -16,11 +16,11 @@ class ScaletypeExampleBridge (var context: Context): ExampleBridge, IconProvider
         context.startActivity(intent)
     }
 
-    override fun getIconId(): Int = -1
+    override fun getIconId(): Int = R.drawable.scaletype_example_icon
 
     override fun getIconBackgroundId(): Int = -1
 
-    override fun getName(): String = ""
+    override fun getName(): String = context.getString(R.string.scaletype_bridge_app_name)
 
     override fun getDescription(): String = "Scale"
 
