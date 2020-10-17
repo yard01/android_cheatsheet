@@ -41,6 +41,7 @@ dependencies {
     implementation project(':navigator_example_bridge')
     implementation project(':scrolling_example_bridge')
     implementation project(':fabfilter_example_bridge')
+    implementation project(':scaletype_example_bridge')
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

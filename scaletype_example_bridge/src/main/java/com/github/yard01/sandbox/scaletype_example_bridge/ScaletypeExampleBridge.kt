@@ -16,7 +16,7 @@ class ScaletypeExampleBridge (var context: Context): ExampleBridge, IconProvider
 
     override fun getName(): String = ""
 
-    override fun getDescription(): String = ""
+    override fun getDescription(): String = "Scale"
 
     override fun getScreenshotCount(): Int = 0
 

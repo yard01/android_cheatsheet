@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.SeekBar
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_turn_page.seek_turn_page
-import kotlinx.android.synthetic.main.activity_turn_page.image_picture
+import kotlinx.android.synthetic.main.scaletype_example_activity_main.*
+import kotlinx.android.synthetic.main.scaletype_example_activity_turn_page.seek_turn_page
+import kotlinx.android.synthetic.main.scaletype_example_activity_turn_page.image_picture
 import kotlin.math.abs
 import kotlin.math.log10
 import kotlin.math.pow

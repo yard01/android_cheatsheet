@@ -9,6 +9,9 @@
 
             {id:1,
                 bridges:[com.github.yard01.fabfilter_example_bridge.FabfilterExampleBridge]
+            },
+            {id:2,
+                bridges:[com.github.yard01.sandbox.scaletype_example_bridge.ScaletypeExampleBridge]
             }
             ]
         }

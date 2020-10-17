@@ -14,7 +14,7 @@ import com.example.matrixscale.MainActivity.Companion.MATRIX_BASED_SCALE_KEY
 import com.example.matrixscale.MainActivity.Companion.SCALE_TYPE_KEY
 import com.example.matrixscale.MainActivity.Companion.SCROLLER_TYPE
 import com.example.matrixscale.MainActivity.Companion.SIZE_TYPE_KEY
-import kotlinx.android.synthetic.main.activity_entry.*
+import kotlinx.android.synthetic.main.scaletype_example_activity_entry.*
 
 
 class EntryActivity : AppCompatActivity() {

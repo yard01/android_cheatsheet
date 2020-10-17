@@ -5,7 +5,7 @@ import android.graphics.RectF
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.scaletype_example_activity_main.*
 
 class MainActivity : AppCompatActivity() {
     companion object {

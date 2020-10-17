@@ -2,11 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.matrixscale">
 
-    <application
-        android:allowBackup="true"
-        android:label="@string/scaletype_example_app_name"
-        android:supportsRtl="true"
-        android:theme="@style/scaletype_example_AppTheme">
+    <application>
         <activity android:name=".TurnPageActivity"></activity>
         <activity android:name=".MatrixActivity" />
         <activity android:name=".EntryActivity">
