@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.SeekBar
-import kotlinx.android.synthetic.main.scaletype_example_activity_main.image_picture
 import kotlinx.android.synthetic.main.scaletype_example_activity_matrix.*
 
 class MatrixActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="scaletype_bridge_app_name">Scale and rotate an image</string>
+    <string name="scaletype_bridge_app_description">
+    <![CDATA[
+            <html>
+            <p> The example demonstrates how to scale and to rotate an ImageView widget. </p>
+<br> Read more <a href=https://medium.com/mobile-app-development-publication/android-matrix-scaletype-explained-4501f0796be8> at medium.com </a>
+            </html>
+            ]]>
+    </string>
 </resources>

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="scaletype_bridge_app_name">Повороты и масштабирование картинки</string>
+    <string name="scaletype_bridge_app_description">
+            <![CDATA[
+            <html>
+            <p> Пример масштабирования и поворотов изображения с помощью виджета ImageView </p>
+
+<br>  Подробное описание <a href=https://medium.com/mobile-app-development-publication/android-matrix-scaletype-explained-4501f0796be8> на medium.com </a>
+
+            </html>
+            ]]>
+
+    </string>
 </resources>

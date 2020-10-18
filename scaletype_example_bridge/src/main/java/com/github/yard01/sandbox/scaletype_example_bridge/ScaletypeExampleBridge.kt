@@ -22,7 +22,7 @@ class ScaletypeExampleBridge (var context: Context): ExampleBridge, IconProvider
 
     override fun getName(): String = context.getString(R.string.scaletype_bridge_app_name)
 
-    override fun getDescription(): String = "Scale"
+    override fun getDescription(): String = context.getString(R.string.scaletype_bridge_app_description)
 
     override fun getScreenshotCount(): Int = 0
 
