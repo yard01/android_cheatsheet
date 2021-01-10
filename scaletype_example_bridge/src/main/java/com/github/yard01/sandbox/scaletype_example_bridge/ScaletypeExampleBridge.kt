@@ -24,8 +24,15 @@ class ScaletypeExampleBridge (var context: Context): ExampleBridge, IconProvider
 
     override fun getDescription(): String = context.getString(R.string.scaletype_bridge_app_description)
 
-    override fun getScreenshotCount(): Int = 0
+    override fun getScreenshotCount(): Int = 3
 
-    override fun getScreenshotId(index: Int): Int = -1
+    override fun getScreenshotId(index: Int): Int {
+        when (index) {
+            0 -> return R.drawable.scaletype_screenshot_0
+            1 -> return R.drawable.scaletype_screenshot_1
+            2 -> return R.drawable.scaletype_screenshot_2
+        }
+        return -1
+    }
 
 }
